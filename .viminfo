@@ -1,0 +1,175 @@
+# Value of 'encoding' when this file was written
+*encoding=utf-8
+
+
+# hlsearch on (H) or off (h):
+~h
+# Last Search Pattern:
+~MSle0~/dark
+
+# Command Line History (newest to oldest):
+:wq
+:q
+:Q
+:w!
+
+# Search String History (newest to oldest):
+?/dark
+?/back
+?/"
+
+# Expression History (newest to oldest):
+
+# Input Line History (newest to oldest):
+
+# Input Line History (newest to oldest):
+
+# Registers:
+"1	LINE	0
+	set background=black
+"2	CHAR	0
+	http://dash.edgesuite.net/envivio/dashpr/clear/Manifest.mpd
+""-	CHAR	0
+	black
+
+# File marks:
+'0  12  19  ~/.vim/colors/molokai.vim
+'1  13  19  ~/.vim/colors/molokai.vim
+'2  7  0  ~/.bash_profile
+'3  62  0  ~/.bashrc
+'4  1  0  /cygdrive/c/Users/martas/Downloads/download1325959.sh
+'5  1  8  ~/devel/nx.client/commit.sh
+'6  42  30  ~/devel/_snippets/dash.js/baseline.html
+
+# Jumplist (newest first):
+-'  12  19  ~/.vim/colors/molokai.vim
+-'  13  0  ~/.vim/colors/molokai.vim
+-'  1  0  ~/.vim/colors/molokai.vim
+-'  16  4  ~/.vim/colors/molokai.vim
+-'  7  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  62  0  ~/.bashrc
+-'  1  0  ~/.bashrc
+-'  1  0  /cygdrive/c/Users/martas/Downloads/download1325959.sh
+-'  1  8  ~/devel/nx.client/commit.sh
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  1  8  ~/devel/nx.client/commit.sh
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  /cygdrive/c/Users/martas/Downloads/download1325959.sh
+-'  1  8  ~/devel/nx.client/commit.sh
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  1  8  ~/devel/nx.client/commit.sh
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  62  0  ~/.bashrc
+-'  1  0  ~/.bashrc
+-'  1  0  /cygdrive/c/Users/martas/Downloads/download1325959.sh
+-'  1  8  ~/devel/nx.client/commit.sh
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  1  8  ~/devel/nx.client/commit.sh
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  /cygdrive/c/Users/martas/Downloads/download1325959.sh
+-'  1  8  ~/devel/nx.client/commit.sh
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  1  8  ~/devel/nx.client/commit.sh
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  7  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  62  0  ~/.bashrc
+-'  1  0  ~/.bashrc
+-'  1  0  /cygdrive/c/Users/martas/Downloads/download1325959.sh
+-'  1  8  ~/devel/nx.client/commit.sh
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  1  8  ~/devel/nx.client/commit.sh
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  /cygdrive/c/Users/martas/Downloads/download1325959.sh
+-'  1  8  ~/devel/nx.client/commit.sh
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+-'  1  0  ~/devel/_snippets/dash.js/baseline.html
+-'  42  30  ~/devel/_snippets/dash.js/baseline.html
+-'  36  63  ~/devel/_snippets/dash.js/baseline.html
+
+# History of marks within files (newest to oldest):
+
+> ~/.vim/colors/molokai.vim
+	"	12	19
+	^	12	20
+	.	12	19
+	+	13	0
+	+	12	19
+
+> ~/.bash_profile
+	"	7	0
+	^	7	1
+	.	7	0
+	+	5	0
+	+	6	0
+	+	7	0
+
+> ~/.bashrc
+	"	62	0
+
+> /cygdrive/c/Users/martas/Downloads/download1325959.sh
+	"	1	0
+
+> ~/devel/nx.client/commit.sh
+	"	1	8
+	^	4	15
+	.	4	14
+	+	4	14
+
+> ~/devel/_snippets/dash.js/baseline.html
+	"	42	30
+	^	36	63
+	.	36	23
+	+	36	23
