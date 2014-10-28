@@ -1,6 +1,14 @@
 filetype plugin on
 filetype indent on
 
+set showmatch
+syntax enable
+
+set shiftwidth=4
+set tabstop=4
+set expandtab
+
+
 set so=7
 set wildmenu
 set wildignore=*.o,*~,*.pyc
@@ -16,6 +24,7 @@ set incsearch
 set lazyredraw
 
 set magic
+
 set mat=2
 
 set noerrorbells
@@ -23,15 +32,12 @@ set novisualbell
 set t_vb=
 set tm=500
 
-set showmatch
-syntax enable
 
 set bg=dark
 set t_Co=256
 
 let g:molokai_original = 1
 colorscheme molokai
-
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -47,6 +53,3 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
-
-set shiftwidth=1
-set tabstop=1
