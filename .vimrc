@@ -1,13 +1,14 @@
 filetype plugin on
 filetype indent on
 
+set hidden
+
 set showmatch
 syntax enable
 
 set shiftwidth=4
 set tabstop=4
 set expandtab
-
 
 set so=7
 set wildmenu
@@ -32,8 +33,6 @@ set novisualbell
 set t_vb=
 set tm=500
 
-
-set bg=dark
 set t_Co=256
 
 let g:molokai_original = 1
@@ -53,3 +52,6 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
+
+map <F5> :!%:p<CR>
+map <Tab> :bn<CR> 
