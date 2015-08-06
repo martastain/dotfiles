@@ -1,5 +1,9 @@
 [user]
 	name = Martastain
-	email = martas@imm.cz
+    email = martas@imm.cz
+
+[core]
+    editor = vim
+
 [color]
 	ui = true
