@@ -9,7 +9,6 @@
 
 hi clear
 
-set background=black
 if version > 580
     " no guarantees for version 5.8 and below, but this makes it stop
     " complaining
