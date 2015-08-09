@@ -8,5 +8,5 @@ done < "list_files"
 
 while IFS= read -r file
 do
-    [ -f "$file" ] && cp -r "$file" ~
+    [ -d "$file" ] && cp -R "$file" ~
 done < "list_dirs"
