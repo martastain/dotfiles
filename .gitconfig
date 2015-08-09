@@ -1,9 +1,12 @@
 [user]
-	name = Martastain
+    name = Martastain
     email = martas@imm.cz
 
 [core]
     editor = vim
 
 [color]
-	ui = true
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto

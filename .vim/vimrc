@@ -56,8 +56,6 @@ set shiftwidth=4
 set tabstop=4
 set expandtab
 
-set foldcolumn=2            " Show a 4-column gutter to the left for
-set foldmethod=marker       " Fold on markers; {{{ and }}} by default.
 set formatoptions=tqnw      " Auto-wrap by tw, allow 'gq', recognize lists,
 
 set so=7
