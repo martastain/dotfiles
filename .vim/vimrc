@@ -1,0 +1,163 @@
+set nocompatible
+
+filetype off
+filetype plugin on
+filetype indent on
+
+" #############################################################################
+" #                                   Plugins                                 #
+" #############################################################################
+
+let vundle_autoinstall = 0
+let vundle_readme = expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+    echo "Installing Vundle..."
+    echo ""
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    let vundle_autoinstall = 1
+endif
+
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#begin()
+
+
+
+Plugin 'gmarik/vundle'
+Plugin 'itchyny/lightline.vim'
+Plugin 'terryma/vim-multiple-cursors'
+
+
+call vundle#end()
+
+if vundle_autoinstall
+    echo "Installing bundles..."
+    echo ""
+    :BundleInstall
+endif
+
+" #############################################################################
+" #                                  Interface                                #
+" #############################################################################
+
+
+syntax on
+
+set hidden
+
+set showmatch
+set mat=2
+
+set autoindent
+
+set backspace=2
+set shiftwidth=4
+set tabstop=4
+set expandtab
+
+set foldcolumn=2            " Show a 4-column gutter to the left for
+set foldmethod=marker       " Fold on markers; {{{ and }}} by default.
+set formatoptions=tqnw      " Auto-wrap by tw, allow 'gq', recognize lists,
+
+set so=7
+set wildmenu
+set wildignore=*.o,*~,*.pyc
+
+set number
+set showcmd
+set backspace=indent,eol,start
+
+
+
+" -- Search --
+
+set smartcase
+set ignorecase smartcase    " Case insensitive search unless caps are used
+set hlsearch
+set incsearch               " Search incrementally (while typing).
+
+set magic
+
+
+
+
+set laststatus=2            " Always show the status line.
+set textwidth=0             " By default, don't wrap at any specific
+                            " column.
+set linebreak wrap          " Wrap text while typing (this is a soft wrap
+                            " without textwidth set).
+set mouse=a                 " Allow use of the mouse in all situations.
+set number                  " Use line numbering.
+set showcmd                 " Show commands as I am typing them.
+set whichwrap=h,l,~,[,]     " These keys will move the cursor over line
+                            " boundaries ('wrap').
+set wildmenu                " Tab completion for files with horizontal list
+                            " of choices.
+set winminheight=0          " Allow window split borders to touch.
+set scrolloff=5             " Don't let the cursor get fewer than 5 lines
+
+
+
+
+
+" Display unprintable characters in a particular way.
+" Leave *list* turned off by default, though.
+set nolist listchars=tab:›\ ,trail:-,extends:>,precedes:<,eol:¬
+
+if v:version >= 704
+    " With Vim 7.4, relativenumber is definitely the way to go.
+    set relativenumber
+endif
+
+
+
+
+" #############################################################################
+" #                        System and theme                                   #
+" #############################################################################
+
+
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+set t_Co=256
+
+"let g:molokai_original = 1
+colorscheme molokai
+
+" Set extra options when running in GUI mode
+if has("gui_running")
+    set guioptions-=T
+    set guioptions+=e
+    set guitablabel=%M\ %t
+endif
+
+if &termencoding == ""
+    let &termencoding = &encoding
+endif
+
+set encoding=utf-8
+set encoding=utf8
+set ffs=unix,dos,mac
+
+set nobackup
+set nowb
+set noswapfile
+
+
+" If there is support for the unnamed plus register (default X11 clipboard), use
+" it as the default yank, delete, change, and put operations.
+set clipboard=unnamed
+if has('unnamedplus')
+    set clipboard=unnamedplus
+endif
+
+
+" #############################################################################
+" #                                    Keys                                   #
+" #############################################################################
+
+map <F5> :!%:p<CR>
