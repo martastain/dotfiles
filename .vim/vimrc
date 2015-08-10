@@ -85,7 +85,7 @@ set textwidth=0             " By default, don't wrap at any specific
                             " column.
 set linebreak wrap          " Wrap text while typing (this is a soft wrap
                             " without textwidth set).
-set mouse=a                 " Allow use of the mouse in all situations.
+"set mouse=a                 " Allow use of the mouse in all situations.
 set number                  " Use line numbering.
 set showcmd                 " Show commands as I am typing them.
 set whichwrap=h,l,~,[,]     " These keys will move the cursor over line
@@ -148,9 +148,10 @@ set noswapfile
 
 " If there is support for the unnamed plus register (default X11 clipboard), use
 " it as the default yank, delete, change, and put operations.
-set clipboard=unnamed
 if has('unnamedplus')
     set clipboard=unnamedplus
+else
+    set clipboard=unnamed
 endif
 
 
