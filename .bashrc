@@ -33,6 +33,24 @@ export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 export HISTIGNORE=$'[ \t]*:&:[fb]g:exit'
 export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls'   # Ignore the ls command as well
 
+BLACK='\e[0;30m'
+BLUE='\e[0;34m'
+GREEN='\e[0;32m'
+CYAN='\e[0;36m'
+RED='\e[0;31m'
+PURPLE='\e[0;35m'
+BROWN='\e[0;33m'
+LIGHTGRAY='\e[0;37m'
+DARKGRAY='\e[1;30m'
+LIGHTBLUE='\e[1;34m'
+LIGHTGREEN='\e[1;32m'
+LIGHTCYAN='\e[1;36m'
+LIGHTRED='\e[1;31m'
+LIGHTPURPLE='\e[1;35m'
+YELLOW='\e[1;33m'
+WHITE='\e[1;37m'
+
+
 #
 # Aliases
 #
@@ -68,12 +86,12 @@ alias doc='cd ~/Documents/'
 #
 
 source ~/.bin/git-prompt.sh
-PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]$(__git_ps1 ' (%s)')\n\$ "
+PS1="\[\e]0;\w\a\]\n\[${GREEN}\]\u@\h \[${YELLOW}\]\w\[\e[0m\]$(__git_ps1 ' (%s)')\n\$ "
 
 #
 # MOTD 
 #
 
-echo Welcome, sir
+echo -ne "${DARKGRAY}""Welcome to `hostname`, sir.\n"
 
 
