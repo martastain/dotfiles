@@ -62,28 +62,18 @@ alias .....="cd ../../../.."
 alias dl='cd ~/Downloads/'
 alias doc='cd ~/Documents/'
 
-#
-# Git related
-#
-
-alias gs='git status'
-alias gc='git commit'
-alias ga='git add'
-alias gd='git diff'
-alias gb='git branch'
-alias gl='git log'
-alias gsb='git show-branch'
-alias gco='git checkout'
-alias gg='git grep'
-alias gk='gitk --all'
-alias gr='git rebase'
-alias gri='git rebase --interactive'
-alias gcp='git cherry-pick'
-alias grm='git rm'
-
 
 #
-# Splash
+# Shell
+#
+
+source ~/.bin/git-prompt.sh
+PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]$(__git_ps1 ' (%s)')\n\$ "
+
+#
+# MOTD 
 #
 
 echo Welcome, sir
+
+
