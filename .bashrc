@@ -92,6 +92,6 @@ PS1="\[\e]0;\w\a\]\n\[${GREEN}\]\u@\h \[${YELLOW}\]\w\[\e[0m\]$(__git_ps1 ' (%s)
 # MOTD 
 #
 
-echo -ne "${DARKGRAY}""Welcome to `hostname`, sir.\n"
+echo -ne "${DARKGRAY}""Welcome to `hostname`'s terminal, `whoami`.\n"
 
 
