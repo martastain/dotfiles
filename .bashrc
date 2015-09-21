@@ -85,8 +85,14 @@ alias doc='cd ~/Documents/'
 # Shell
 #
 
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    LCOLOR=$BLUE
+else
+    LCOLOR=$GREEN
+fi
+
 source ~/.bin/git-prompt.sh
-PS1="\[\e]0;\w\a\]\n\[${GREEN}\]\u@\h \[${YELLOW}\]\w\[\e[0m\]$(__git_ps1 ' (%s)')\n\$ "
+PS1="\[\e]0;\w\a\]\n\[${LCOLOR}\]\u@\h \[${YELLOW}\]\w\[\e[0m\]$(__git_ps1 ' (%s)')\n\$ "
 
 #
 # MOTD 
