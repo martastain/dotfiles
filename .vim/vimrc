@@ -168,3 +168,5 @@ set pastetoggle=<F2>
 
 map <F5> :!%:p<CR>
 map <Tab> :bn<CR>
+vnoremap . :norm.<CR>
+"inoremap jk <ESC>
