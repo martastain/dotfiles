@@ -1,26 +1,30 @@
-#
-# PATH
-#
-
-if [ -d "${HOME}/.bin" ]; then
-    PATH="${HOME}/.bin:$PATH"
-
-    if [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ] && [ -d "${HOME}/.bin/windows" ] ; then
-        PATH="${HOME}/.bin/windows:$PATH"
-    fi
-
-fi
-
-export COMSPEC=/cygdrive/c/Windows/System32/cmd.exe
-
-
+# Martas did this
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
 
-#
+##
+# Custom path
+## 
+
+if [ -d "${HOME}/.bin" ]; then
+    PATH="${HOME}/.bin:$PATH"
+fi
+
+##
+# If cygwin
+##
+
+if [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
+    export COMSPEC=/cygdrive/c/Windows/System32/cmd.exe
+    if [ -d "${HOME}/.bin/windows" ]; then 
+        PATH="${HOME}/.bin/windows:$PATH"
+    fi
+fi
+
+##
 # ENV
-#
+##
 
 set -o notify
 set completion-ignore-case on
@@ -72,11 +76,6 @@ alias f="find . | grep "
 # Quick access
 #
 
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-
 alias dl='cd ~/Downloads/'
 alias doc='cd ~/Documents/'
 
@@ -99,5 +98,3 @@ PS1="\[\e]0;\w\a\]\n\[${LCOLOR}\]\u@\h \[${YELLOW}\]\w\[\e[0m\]$(__git_ps1 ' (%s
 #
 
 echo -ne "${DARKGRAY}""Welcome to `hostname`'s terminal, `whoami`.\n"
-
-

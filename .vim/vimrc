@@ -66,7 +66,16 @@ set number
 set showcmd
 set backspace=indent,eol,start
 
+if has('multi_byte') && &encoding ==# 'utf-8'
+  let &listchars = 'trail:·,tab:»·,eol:¶,extends:→,precedes:←,nbsp:×'
+  let &fillchars = 'stl: ,stlnc: ,vert:│'
 
+  if has('patch-7.4.338')
+    let &showbreak = nr2char(8618).' '
+    set breakindent
+    set breakindentopt=sbr
+  endif
+endif
 
 " -- Search --
 
@@ -98,10 +107,6 @@ set scrolloff=5             " Don't let the cursor get fewer than 5 lines
 
 
 
-
-" Display unprintable characters in a particular way.
-" Leave *list* turned off by default, though.
-set nolist listchars=tab:›\ ,trail:-,extends:>,precedes:<,eol:¬
 
 if v:version >= 704
     " With Vim 7.4, relativenumber is definitely the way to go.
