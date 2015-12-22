@@ -93,6 +93,12 @@ fi
 source ~/.bin/git-prompt.sh
 PS1="\[\e]0;\w\a\]\n\[${LCOLOR}\]\u@\h \[${YELLOW}\]\w\[\e[0m\]$(__git_ps1 ' (%s)')\n\$ "
 
+
+if [ -f ${HOME}/.privaterc ]; then
+    source ${HOME}/.privaterc
+fi
+
+
 #
 # MOTD 
 #
