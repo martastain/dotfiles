@@ -1,11 +1,16 @@
-# Martas did this
+##
 # If not running interactively, don't do anything
-[[ "$-" != *i* ]] && return
+##
 
+[[ "$-" != *i* ]] && return
 
 ##
 # Custom path
 ## 
+
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
 
 if [ -d "${HOME}/.bin" ]; then
     PATH="${HOME}/.bin:$PATH"
@@ -54,10 +59,9 @@ LIGHTPURPLE='\e[1;35m'
 YELLOW='\e[1;33m'
 WHITE='\e[1;37m'
 
-
-#
+##
 # Aliases
-#
+##
 
 alias grep='grep --color'
 alias egrep='egrep --color=auto'
@@ -72,17 +76,16 @@ alias l='ls -CF'
 alias cls='clear'
 alias f="find . | grep "
 
-#
+##
 # Quick access
-#
+##
 
 alias dl='cd ~/Downloads/'
 alias doc='cd ~/Documents/'
 
-
-#
+##
 # Shell
-#
+##
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     LCOLOR=$BLUE
@@ -98,9 +101,8 @@ if [ -f ${HOME}/.privaterc ]; then
     source ${HOME}/.privaterc
 fi
 
-
-#
+##
 # MOTD 
-#
+##
 
 echo -ne "${DARKGRAY}""Welcome to `hostname`'s terminal, `whoami`.\n"
