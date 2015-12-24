@@ -18,16 +18,13 @@ if !filereadable(vundle_readme)
     let vundle_autoinstall = 1
 endif
 
-
 set rtp+=~/.vim/bundle/vundle/
+
 call vundle#begin()
-
-
 
 Plugin 'gmarik/vundle'
 Plugin 'itchyny/lightline.vim'
 Plugin 'terryma/vim-multiple-cursors'
-
 
 call vundle#end()
 
@@ -41,30 +38,33 @@ endif
 " #                                  Interface                                #
 " #############################################################################
 
-
-syntax on
-
-set hidden
-
-set showmatch
-set mat=2
+syntax on                       " Enable syntax HL
+set showmatch                   " Show matching braces
+set mat=2                       " How many tenths of a second to blink when matching brackets
 
 set autoindent
-
 set backspace=2
 set shiftwidth=4
 set tabstop=4
 set expandtab
-
-set formatoptions=tqnw      " Auto-wrap by tw, allow 'gq', recognize lists,
-
-set so=7
-set wildmenu
-set wildignore=*.o,*~,*.pyc
-
-set number
-set showcmd
 set backspace=indent,eol,start
+set textwidth=0                 " By default, don't wrap at any specifi column.
+set linebreak wrap              " Wrap text while typing (this is a soft wrap without textwidth set).
+set whichwrap=h,l,~,[,]         " These keys will move the cursor over line boundaries ('wrap').
+set formatoptions=tqnw          " Auto-wrap by tw, allow 'gq', recognize lists,
+
+set laststatus=2                " Always show the status line.
+"set mouse=a                     " Allow use of the mouse in all situations.
+"set number                      " Use line numbering.
+set showcmd                     " Show commands as I am typing them.
+set wildmenu                    " Tab completion for files with horizontal list of choices.
+set wildignore=*.o,*~,*.pyc
+set winminheight=0              " Allow window split borders to touch.
+set scrolloff=5                 " Don't let the cursor get fewer than 5 lines
+
+"if v:version >= 704
+"    set relativenumber
+"endif
 
 if has('multi_byte') && &encoding ==# 'utf-8'
   let &listchars = 'trail:·,tab:»·,eol:¶,extends:→,precedes:←,nbsp:×'
@@ -80,63 +80,23 @@ endif
 " -- Search --
 
 set smartcase
-set ignorecase smartcase    " Case insensitive search unless caps are used
+set ignorecase smartcase        " Case insensitive search unless caps are used
 set hlsearch
-set incsearch               " Search incrementally (while typing).
-
+set incsearch                   " Search incrementally (while typing).
 set magic
-
-
-
-
-set laststatus=2            " Always show the status line.
-set textwidth=0             " By default, don't wrap at any specific
-                            " column.
-set linebreak wrap          " Wrap text while typing (this is a soft wrap
-                            " without textwidth set).
-"set mouse=a                 " Allow use of the mouse in all situations.
-set number                  " Use line numbering.
-set showcmd                 " Show commands as I am typing them.
-set whichwrap=h,l,~,[,]     " These keys will move the cursor over line
-                            " boundaries ('wrap').
-set wildmenu                " Tab completion for files with horizontal list
-                            " of choices.
-set winminheight=0          " Allow window split borders to touch.
-set scrolloff=5             " Don't let the cursor get fewer than 5 lines
-
-
-
-
-
-if v:version >= 704
-    " With Vim 7.4, relativenumber is definitely the way to go.
-    set relativenumber
-endif
-
-
-
 
 " #############################################################################
 " #                        System and theme                                   #
 " #############################################################################
 
+colorscheme molokai             " Use my favorite color scheme
 
 set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-
 set t_Co=256
 
-"let g:molokai_original = 1
-colorscheme molokai
-
-" Set extra options when running in GUI mode
-if has("gui_running")
-    set guioptions-=T
-    set guioptions+=e
-    set guitablabel=%M\ %t
-endif
 
 if &termencoding == ""
     let &termencoding = &encoding
@@ -149,20 +109,22 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
+set hidden                    " Hide buffers instead closing them with opening a new file
 
+" Set extra options when running in GUI mode
+if has("gui_running")
+    set guioptions-=T
+    set guioptions+=e
+    set guitablabel=%M\ %t
+    set lines=1000 columns=999
+    set ghr=0
+endif
 
-" If there is support for the unnamed plus register (default X11 clipboard), use
-" it as the default yank, delete, change, and put operations.
+" Use default X11 clipboard if available
 if has('unnamedplus')
     set clipboard=unnamedplus
 else
     set clipboard=unnamed
-endif
-
-
-if has("gui_running")
-    set lines=1000 columns=999
-    set ghr=0
 endif
 
 " #############################################################################
@@ -174,4 +136,3 @@ set pastetoggle=<F2>
 map <F5> :!%:p<CR>
 map <Tab> :bn<CR>
 vnoremap . :norm.<CR>
-"inoremap jk <ESC>
