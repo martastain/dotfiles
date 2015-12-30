@@ -25,6 +25,7 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 Plugin 'itchyny/lightline.vim'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 
