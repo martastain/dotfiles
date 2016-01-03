@@ -29,7 +29,7 @@ Plugin 'thinca/vim-visualstar'              " Enable * in visual mode
 Plugin 'ntpeters/vim-better-whitespace'     " Highlight trailing whitespaces (and delete on save)
 Plugin 'itchyny/lightline.vim'              " Faster than airline
 Plugin 'ap/vim-buftabline'                  " Buffer list in top line
-Plugin 'matze/vim-move'                     " Move line/selection using A-J and A-K
+Plugin 'nathanaelkane/vim-indent-guides'
 
 call vundle#end()
 
@@ -47,11 +47,18 @@ syntax on                       " Enable syntax HL
 set showmatch                   " Show matching braces
 set mat=2                       " How many tenths of a second to blink when matching brackets
 
+" Indentation
+
 set autoindent
 set backspace=2
 set shiftwidth=4
 set tabstop=4
 set expandtab
+
+autocmd FileType make setlocal noexpandtab
+
+" Text wrap
+
 set backspace=indent,eol,start
 set textwidth=0                 " By default, don't wrap at any specifi column.
 set linebreak wrap              " Wrap text while typing (this is a soft wrap without textwidth set).
@@ -64,17 +71,16 @@ set winminheight=0              " Allow window split borders to touch.
 set scrolloff=1                 " Don't let the cursor get fewer than 1 line
 
 " Tab completion for files with horizontal list of choices.
+
 set wildmenu
 set wildignore=*.o,*~
 set wildignore+=.DS_Store,.git/**,tmp/**,*.log,.bundle/**,node_modules/**,tags
 set wildignore+=*.rbc,.rbx,*.scssc,*.sassc,.sass-cache,*.pyc,*.gem
 set wildignore+=*.jpg,*.jpeg,*.tiff,*.gif,*.png,*.svg,*.psd,.mov,*.mp4
 
-
 if has('multi_byte') && &encoding ==# 'utf-8'
     let &listchars = 'trail:·,tab:»·,eol:¶,extends:→,precedes:←,nbsp:×'
     let &fillchars = 'stl: ,stlnc: ,vert:│'
-
     if has('patch-7.4.338')
         let &showbreak = nr2char(8618).' '
         set breakindent
@@ -141,13 +147,19 @@ endif
 " #                             Plugin settings                               #
 " #############################################################################
 
-hi ExtraWhitespace ctermbg=161
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+hi IndentGuidesOdd      ctermbg=234
+hi IndentGuidesEven     ctermbg=234
+
+hi ExtraWhitespace      ctermbg=161
 
 hi BufTabLineCurrent    ctermbg=0   cterm=bold
 hi BufTabLineActive     ctermbg=238
 hi BufTabLineHidden     ctermbg=238
 hi BufTabLineFill       ctermbg=238
-
 autocmd BufWritePre * StripWhitespace
 
 " #############################################################################
