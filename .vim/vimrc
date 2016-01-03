@@ -22,10 +22,14 @@ set rtp+=~/.vim/bundle/vundle/
 
 call vundle#begin()
 
-Plugin 'gmarik/vundle'
-Plugin 'itchyny/lightline.vim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tpope/vim-fugitive'
+Plugin 'gmarik/vundle'                      " Autoupdate vundle
+Plugin 'terryma/vim-multiple-cursors'       " Multiple cursors (use C-n)
+Plugin 'tpope/vim-fugitive'                 " Git
+Plugin 'thinca/vim-visualstar'              " Enable * in visual mode
+Plugin 'ntpeters/vim-better-whitespace'     " Highlight trailing whitespaces (and delete on save)
+Plugin 'itchyny/lightline.vim'              " Faster than airline
+Plugin 'ap/vim-buftabline'                  " Buffer list in top line
+Plugin 'matze/vim-move'                     " Move line/selection using A-J and A-K
 
 call vundle#end()
 
@@ -54,35 +58,35 @@ set linebreak wrap              " Wrap text while typing (this is a soft wrap wi
 set whichwrap=h,l,~,[,]         " These keys will move the cursor over line boundaries ('wrap').
 set formatoptions=tqnw          " Auto-wrap by tw, allow 'gq', recognize lists,
 
-set laststatus=2                " Always show the status line.
-"set mouse=a                     " Allow use of the mouse in all situations.
-"set number                      " Use line numbering.
 set showcmd                     " Show commands as I am typing them.
-set wildmenu                    " Tab completion for files with horizontal list of choices.
-set wildignore=*.o,*~,*.pyc
+set laststatus=2                " Always show the status line.
 set winminheight=0              " Allow window split borders to touch.
-set scrolloff=5                 " Don't let the cursor get fewer than 5 lines
+set scrolloff=1                 " Don't let the cursor get fewer than 1 line
 
-"if v:version >= 704
-"    set relativenumber
-"endif
+" Tab completion for files with horizontal list of choices.
+set wildmenu
+set wildignore=*.o,*~
+set wildignore+=.DS_Store,.git/**,tmp/**,*.log,.bundle/**,node_modules/**,tags
+set wildignore+=*.rbc,.rbx,*.scssc,*.sassc,.sass-cache,*.pyc,*.gem
+set wildignore+=*.jpg,*.jpeg,*.tiff,*.gif,*.png,*.svg,*.psd,.mov,*.mp4
+
 
 if has('multi_byte') && &encoding ==# 'utf-8'
-  let &listchars = 'trail:·,tab:»·,eol:¶,extends:→,precedes:←,nbsp:×'
-  let &fillchars = 'stl: ,stlnc: ,vert:│'
+    let &listchars = 'trail:·,tab:»·,eol:¶,extends:→,precedes:←,nbsp:×'
+    let &fillchars = 'stl: ,stlnc: ,vert:│'
 
-  if has('patch-7.4.338')
-    let &showbreak = nr2char(8618).' '
-    set breakindent
-    set breakindentopt=sbr
-  endif
+    if has('patch-7.4.338')
+        let &showbreak = nr2char(8618).' '
+        set breakindent
+        set breakindentopt=sbr
+    endif
 endif
 
 " -- Search --
 
 set smartcase
 set ignorecase smartcase        " Case insensitive search unless caps are used
-set hlsearch
+set hlsearch                    " Highlight search
 set incsearch                   " Search incrementally (while typing).
 set magic
 
@@ -90,27 +94,32 @@ set magic
 " #                        System and theme                                   #
 " #############################################################################
 
-colorscheme molokai             " Use my favorite color scheme
+colorscheme molokai
 
+set timeoutlen=50
 set noerrorbells
 set novisualbell
 set t_vb=
-set tm=500
 set t_Co=256
 
-
-if &termencoding == ""
-    let &termencoding = &encoding
-endif
-
-set encoding=utf-8
-set encoding=utf8
+set binary                     " Allow binary file editing
+set encoding=utf8              " Default encoding
+set termencoding=utf-8         " Terminal encoding
+set fileencodings=utf8         " Supported file encodings
 set ffs=unix,dos,mac
 
 set nobackup
 set nowb
 set noswapfile
-set hidden                    " Hide buffers instead closing them with opening a new file
+set hidden                     " Hide buffers instead closing them with opening a new file
+
+if exists("+undofile")
+    " Store undofile in to fixed location
+    " undofile - This allows you to use undos after exiting and restarting
+    set undofile
+    set undodir=/var/tmp//,/tmp//,.
+endif
+
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -129,11 +138,25 @@ else
 endif
 
 " #############################################################################
+" #                             Plugin settings                               #
+" #############################################################################
+
+hi ExtraWhitespace ctermbg=161
+
+hi BufTabLineCurrent    ctermbg=0   cterm=bold
+hi BufTabLineActive     ctermbg=238
+hi BufTabLineHidden     ctermbg=238
+hi BufTabLineFill       ctermbg=238
+
+autocmd BufWritePre * StripWhitespace
+
+" #############################################################################
 " #                                    Keys                                   #
 " #############################################################################
 
 set pastetoggle=<F2>
-
-map <F5> :!%:p<CR>
-map <Tab> :bn<CR>
 vnoremap . :norm.<CR>
+
+map          <F5>       :!%:p<CR>
+map          <Tab>      :bn<CR>
+map          <S-Tab>    :bp<CR>
