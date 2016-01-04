@@ -39,6 +39,7 @@ if vundle_autoinstall
     :BundleInstall
 endif
 
+
 " #############################################################################
 " #                                  Interface                                #
 " #############################################################################
@@ -50,12 +51,11 @@ set mat=2                       " How many tenths of a second to blink when matc
 " Indentation
 
 set autoindent
+set smartindent
+set expandtab
 set backspace=2
 set shiftwidth=4
 set tabstop=4
-set expandtab
-
-autocmd FileType make setlocal noexpandtab
 
 " Text wrap
 
@@ -90,8 +90,8 @@ endif
 
 " -- Search --
 
+set ignorecase                  " Case insensitive search unless caps are used
 set smartcase
-set ignorecase smartcase        " Case insensitive search unless caps are used
 set hlsearch                    " Highlight search
 set incsearch                   " Search incrementally (while typing).
 set magic
@@ -108,7 +108,6 @@ set novisualbell
 set t_vb=
 set t_Co=256
 
-set binary                     " Allow binary file editing
 set encoding=utf8              " Default encoding
 set termencoding=utf-8         " Terminal encoding
 set fileencodings=utf8         " Supported file encodings
@@ -143,6 +142,7 @@ else
     set clipboard=unnamed
 endif
 
+
 " #############################################################################
 " #                             Plugin settings                               #
 " #############################################################################
@@ -172,3 +172,6 @@ vnoremap . :norm.<CR>
 map          <F5>       :!%:p<CR>
 map          <Tab>      :bn<CR>
 map          <S-Tab>    :bp<CR>
+
+
+
