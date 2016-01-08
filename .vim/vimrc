@@ -30,6 +30,7 @@ Plugin 'ntpeters/vim-better-whitespace'     " Highlight trailing whitespaces (an
 Plugin 'itchyny/lightline.vim'              " Faster than airline
 Plugin 'ap/vim-buftabline'                  " Buffer list in top line
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'scrooloose/nerdtree'
 
 call vundle#end()
 
@@ -169,6 +170,7 @@ autocmd BufWritePre * StripWhitespace
 set pastetoggle=<F2>
 vnoremap . :norm.<CR>
 
+map          <F2>       :NERDTreeToggle<CR>
 map          <F5>       :!%:p<CR>
 map          <Tab>      :bn<CR>
 map          <S-Tab>    :bp<CR>
