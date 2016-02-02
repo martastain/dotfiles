@@ -6,7 +6,7 @@
 
 ##
 # Custom path
-## 
+##
 
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -22,7 +22,7 @@ fi
 
 if [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
     export COMSPEC=/cygdrive/c/Windows/System32/cmd.exe
-    if [ -d "${HOME}/.bin/windows" ]; then 
+    if [ -d "${HOME}/.bin/windows" ]; then
         PATH="${HOME}/.bin/windows:$PATH"
     fi
 fi
@@ -35,6 +35,7 @@ set -o notify
 set completion-ignore-case on
 set show-all-if-ambiguous on
 
+export TERM='xterm-256color'
 export LANG='en_US.UTF-8'
 export EDITOR=vim
 
@@ -102,7 +103,7 @@ if [ -f ${HOME}/.privaterc ]; then
 fi
 
 ##
-# MOTD 
+# MOTD
 ##
 
 echo -ne "${DARKGRAY}""Welcome to `hostname`'s terminal, `whoami`.\n"
