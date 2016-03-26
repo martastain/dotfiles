@@ -170,10 +170,11 @@ autocmd BufWritePre * StripWhitespace
 set pastetoggle=<F2>
 vnoremap . :norm.<CR>
 
+xnoremap <  <gv
+xnoremap >  >gv
+
 map          <C-o>      :NERDTreeToggle<CR>
 map          <F5>       :!%:p<CR>
 map          <Tab>      :bn<CR>
 map          <S-Tab>    :bp<CR>
-
-
 
