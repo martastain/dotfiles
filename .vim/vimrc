@@ -75,7 +75,7 @@ set scrolloff=1                 " Don't let the cursor get fewer than 1 line
 
 set wildmenu
 set wildignore=*.o,*~
-set wildignore+=.DS_Store,.git/**,tmp/**,*.log,.bundle/**,node_modules/**,tags
+set wildignore+=.DS_Store,.git/**,tmp/**,*.log,.bundle/**,tags
 set wildignore+=*.rbc,.rbx,*.scssc,*.sassc,.sass-cache,*.pyc,*.gem
 set wildignore+=*.jpg,*.jpeg,*.tiff,*.gif,*.png,*.svg,*.psd,.mov,*.mp4
 
@@ -172,12 +172,16 @@ autocmd BufWritePre * StripWhitespace
 set pastetoggle=<F2>
 vnoremap . :norm.<CR>
 
-xnoremap <  <gv
-xnoremap >  >gv
+xnoremap     <          <gv
+xnoremap     >          >gv
 
 map          <C-o>      :NERDTreeToggle<CR>
 map          <F5>       :!%:p<CR>
 map          <Tab>      :bn<CR>
 map          <S-Tab>    :bp<CR>
+
+nmap         <S-Enter>  O<Esc>
+nmap         <CR>       o<Esc>
+"nnoremap     <esc>      :noh<return><esc>
 
 au BufRead,BufNewFile *.twig set filetype=html
