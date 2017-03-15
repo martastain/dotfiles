@@ -1,4 +1,4 @@
-hardstatus alwayslastline "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %Y-%m-%d %c"
+hardstatus alwayslastline "%{.KW}%-w%{.bW}%n %t%{-}%+w %=%{..G} %H %{..Y}"
 shell "bash"
 startup_message off
 vbell off
