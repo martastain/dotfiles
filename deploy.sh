@@ -4,14 +4,19 @@ BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 while IFS= read -r file_name
 do
-    SOURCE_FILE=${BASEDIR}/$file_name
-    TARGET_FILE=${HOME}/$file_name
+    SOURCE_PATH=${BASEDIR}/$file_name
+    TARGET_PATH=${HOME}/$file_name
 
-    if [ -f ${TARGET_FILE} ]; then
-        rm ${TARGET_FILE}
+    if [ -f ${TARGET_PATH} ] || [ -L ${TARGET_PATH}]; then
+        rm ${TARGET_PATH}
     fi
 
-    ln -s ${SOURCE_FILE} ${TARGET_FILE}
+    TARGET_DIR=$(dirname "${TARGET_PATH}")
+    if [ -d ${TARGET_DIR} ]; then
+        mkdir -p ${TARGET_DIR}
+    fi
+
+    ln -s ${SOURCE_PATH} ${TARGET_PATH}
 
 done < "list_files"
 
@@ -22,7 +27,7 @@ do
     SOURCE_DIR=${BASEDIR}/$dir_name
     TARGET_DIR=${HOME}/$dir_name
 
-    if [ -d ${TARGET_DIR} ]; then
+    if [ -d ${TARGET_DIR} ] || [-L ${TARGET_DIR}]; then
         rm -rf ${TARGET_DIR}
     fi
 
