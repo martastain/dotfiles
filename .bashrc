@@ -1,12 +1,6 @@
-##
-# If not running interactively, don't do anything
-##
-
-[[ "$-" != *i* ]] && return
-
-##
-# Custom path
-##
+#
+# PATH
+#
 
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -16,10 +10,7 @@ if [ -d "${HOME}/.bin" ]; then
     PATH="${HOME}/.bin:$PATH"
 fi
 
-##
 # If cygwin
-##
-
 if [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
     export COMSPEC=/cygdrive/c/Windows/System32/cmd.exe
     if [ -d "${HOME}/.bin/windows" ]; then
@@ -27,9 +18,45 @@ if [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
     fi
 fi
 
-##
-# ENV
-##
+#
+# Aliases
+#
+
+alias grep='grep --color'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+alias ls='ls -F --color=tty'
+alias dir='ls --color=auto --format=vertical'
+alias vdir='ls --color=auto --format=long'
+alias ll='ls -l'                              # long list
+alias la='ls -A'                              # all but . and ..
+alias l='ls -CF'
+alias cls='clear'
+alias f="find . | grep "
+
+# Quick access
+
+alias dl='cd ~/Downloads/'
+alias doc='cd ~/Documents/'
+
+#
+# If not running interactively, stop here
+#
+
+[[ "$-" != *i* ]] && return
+
+#
+# Private settings (ssh aliases etc)
+#
+
+if [ -f ${HOME}/.privaterc ]; then
+    source ${HOME}/.privaterc
+fi
+
+#
+# Prompt
+#
 
 set -o notify
 set completion-ignore-case on
@@ -60,34 +87,6 @@ LIGHTPURPLE='\e[1;35m'
 YELLOW='\e[1;33m'
 WHITE='\e[1;37m'
 
-##
-# Aliases
-##
-
-alias grep='grep --color'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-
-alias ls='ls -F --color=tty'
-alias dir='ls --color=auto --format=vertical'
-alias vdir='ls --color=auto --format=long'
-alias ll='ls -l'                              # long list
-alias la='ls -A'                              # all but . and ..
-alias l='ls -CF'
-alias cls='clear'
-alias f="find . | grep "
-
-##
-# Quick access
-##
-
-alias dl='cd ~/Downloads/'
-alias doc='cd ~/Documents/'
-
-##
-# Shell
-##
-
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     LCOLOR=$BLUE
 else
@@ -97,13 +96,8 @@ fi
 source ~/.bin/git-prompt.sh
 PS1="\[\e]0;\w\a\]\n\[${LCOLOR}\]\u@\h \[${YELLOW}\]\w\[\e[0m\]$(__git_ps1 ' (%s)')\n\$ "
 
-
-if [ -f ${HOME}/.privaterc ]; then
-    source ${HOME}/.privaterc
-fi
-
-##
-# MOTD
-##
+#
+# motd
+#
 
 echo -ne "${DARKGRAY}""Welcome to `hostname`'s terminal, `whoami`.\n"
