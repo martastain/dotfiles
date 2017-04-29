@@ -65,6 +65,7 @@ set show-all-if-ambiguous on
 export TERM='xterm-256color'
 export LANG='en_US.UTF-8'
 export EDITOR=vim
+export FQDN=`hostname -f`
 
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 export HISTIGNORE=$'[ \t]*:&:[fb]g:exit'
