@@ -24,7 +24,6 @@ call vundle#begin()
 
 Plugin 'gmarik/vundle'                      " Autoupdate vundle
 Plugin 'terryma/vim-multiple-cursors'       " Multiple cursors (use C-n)
-Plugin 'tpope/vim-fugitive'                 " Git
 Plugin 'thinca/vim-visualstar'              " Enable * in visual mode
 Plugin 'ntpeters/vim-better-whitespace'     " Highlight trailing whitespaces (and delete on save)
 Plugin 'itchyny/lightline.vim'              " Faster than airline
