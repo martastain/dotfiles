@@ -11,12 +11,19 @@ if [ -d "${HOME}/.bin" ]; then
 fi
 
 # If cygwin
+
 if [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
     export COMSPEC=/cygdrive/c/Windows/System32/cmd.exe
     if [ -d "${HOME}/.bin/windows" ]; then
         PATH="${HOME}/.bin/windows:$PATH"
     fi
 fi
+
+#
+# If not running interactively, stop here
+#
+
+[[ "$-" != *i* ]] && return
 
 #
 # Aliases
@@ -35,16 +42,12 @@ alias l='ls -CF'
 alias cls='clear'
 alias f="find . | grep "
 
+alias mp="ncmpcpp"                            # Caffeine desktop music
+
 # Quick access
 
 alias dl='cd ~/Downloads/'
 alias doc='cd ~/Documents/'
-
-#
-# If not running interactively, stop here
-#
-
-[[ "$-" != *i* ]] && return
 
 #
 # Private settings (ssh aliases etc)
