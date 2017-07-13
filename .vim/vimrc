@@ -186,6 +186,7 @@ xnoremap     >          >gv
 
 map          <C-o>      :NERDTreeToggle<CR>
 map          <F5>       :!./%<CR>
+map          <F9>       :!reset<CR>
 map          <Tab>      :bn<CR>
 map          <S-Tab>    :bp<CR>
 
