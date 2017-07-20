@@ -53,8 +53,8 @@ alias doc='cd ~/Documents/'
 # Private settings (ssh aliases etc)
 #
 
-if [ -f ${HOME}/.privaterc ]; then
-    source ${HOME}/.privaterc
+if [ -f ${HOME}/.private/special/bashrc ]; then
+    source ${HOME}/.private/special/bashrc
 fi
 
 #
