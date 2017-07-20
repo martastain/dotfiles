@@ -5,7 +5,7 @@ OpaqueWhenFocused=no
 CursorBlinks=no
 CursorType=block
 BellType=0
-BellFlash=yes
+BellFlash=no
 
 ForegroundColour=147,161,161
 BackgroundColour=0,0,0
