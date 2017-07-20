@@ -1,0 +1,49 @@
+source ~/.mutt/theme
+
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager="builtin"
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+
+#
+# Keys
+#
+
+bind index gg       first-entry
+bind index G        last-entry
+bind index,pager R  group-reply
+
+bind pager <up>     previous-line
+bind pager <down>   next-line
+
+#
+# Sorting and formats
+#
+
+set date_format = "%Y-%m-%d"
+set index_format = "[%Z] %d    %-20.20F %s"
+set sort = threads                         # like gmail
+set sort_aux = reverse-last-date-received  # like gmail
+set uncollapse_jump                        # don't collapse on an unread message
+set sort_re                                # thread based on regex
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+
+#
+# Global mail options
+#
+
+set timeout=30
+
+set header_cache     = "~/.cache/mutt/headers"
+set message_cachedir = "~/.cache/mutt/bodies"
+set certificate_file = "~/.cache/mutt/certificates"
+
+source ~/.private/special/muttrc
+

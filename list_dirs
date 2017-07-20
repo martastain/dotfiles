@@ -1,3 +1,6 @@
 .vim
 .bin
+.mutt
 .config/mc
+.ncmpcpp
+.irssi/scripts
