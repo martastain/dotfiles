@@ -4,6 +4,3 @@ DIR=`pwd`
 
 find $DIR/ -type d -exec chmod 775 {} +
 find $DIR/ -type f -exec chmod 664 {} +
-
-chmod 755 *.py
-chmod 744 *.sh
