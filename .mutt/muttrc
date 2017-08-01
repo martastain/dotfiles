@@ -6,8 +6,11 @@ set pager="builtin"
 set pager_stop             # don't go to next message automatically
 set menu_scroll            # scroll in menus
 set tilde                  # show tildes like in vim
-#set help=no
 unset markers              # no ugly plus signs
+
+
+set sidebar_width=29
+set sidebar_visible=yes
 
 #
 # Keys
@@ -18,10 +21,12 @@ bind index       G   last-entry
 bind index,pager R   group-reply
 bind index       C   imap-fetch-mail
 
-bind pager <up>     previous-line
-bind pager <down>   next-line
-bind attach <return> view-mailcap
+bind attach      <return>   view-mailcap
 
+bind index,pager <down>     sidebar-next
+bind index,pager <up>       sidebar-prev
+bind index,pager <right>    sidebar-open
+bind index,pager \co        sidebar-toggle-visible
 #
 # Sorting and formats
 #

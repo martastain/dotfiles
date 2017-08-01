@@ -4,6 +4,13 @@ color indicator color15 color237
 color status brightcolor39 color233
 color markers color142 color233
 
+color sidebar_divider brightcolor39 color233
+color sidebar_highlight color15 color237
+
+color sidebar_flagged red color233
+color sidebar_new green color233
+color sidebar_ordinary color15 color233
+
 color hdrdefault color245 color233
 color header brightcolor214 color233 "^(Subject): "
 color signature color243 color233
