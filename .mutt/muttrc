@@ -8,25 +8,28 @@ set menu_scroll            # scroll in menus
 set tilde                  # show tildes like in vim
 unset markers              # no ugly plus signs
 
-
 set sidebar_width=29
 set sidebar_visible=yes
+set sidebar_short_path                  # Shorten mailbox names
+set sidebar_delim_chars="/."
 
 #
 # Keys
 #
 
-bind index       gg  first-entry
-bind index       G   last-entry
-bind index,pager R   group-reply
-bind index       C   imap-fetch-mail
+bind index       gg         first-entry
+bind index       G          last-entry
+bind index,pager R          group-reply
+
+bind pager       <up>       previous-line
+bind pager       <down>     next-line
+bind index       <down>     sidebar-next
+bind index       <up>       sidebar-prev
+bind index       <right>    sidebar-open
+bind index,pager \co        sidebar-toggle-visible
 
 bind attach      <return>   view-mailcap
 
-bind index,pager <down>     sidebar-next
-bind index,pager <up>       sidebar-prev
-bind index,pager <right>    sidebar-open
-bind index,pager \co        sidebar-toggle-visible
 #
 # Sorting and formats
 #
@@ -62,7 +65,6 @@ set mailcap_path    = ~/.mutt/mailcap
 
 auto_view            text/html
 alternative_order    text/plain text/enriched text/html
-
 
 set header_cache     = "~/.cache/mutt/headers"
 set message_cachedir = "~/.cache/mutt/bodies"
