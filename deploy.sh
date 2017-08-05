@@ -1,39 +1,85 @@
 #!/bin/bash
 
-BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+# Base config files: bash, vim, screen, mc
 
-while IFS= read -r file_name
-do
-    SOURCE_PATH=${BASEDIR}/$file_name
-    TARGET_PATH=${HOME}/$file_name
+files_base=(
+    ".vim"
+    ".bin"
+    ".config/mc"
 
-    if [ -f ${TARGET_PATH} ] || [ -L ${TARGET_PATH} ]; then
-        rm ${TARGET_PATH}
-    fi
+    ".bashrc"
+    ".gitconfig"
+    ".profile"
+    ".selected_editor"
+    ".screenrc"
+    ".config/imageview.sh"
+)
 
-    TARGET_DIR=$(dirname "${TARGET_PATH}")
-    if [ -d ${TARGET_DIR} ]; then
-        mkdir -p ${TARGET_DIR}
-    fi
+# Extended (for workstations) configuration files
 
-    echo "Creating link ${SOURCE_PATH} -> ${TARGET_PATH}"
-    ln -s ${SOURCE_PATH} ${TARGET_PATH}
+files_extended=(
+    ".mutt"
+    ".ncmpcpp"
+    ".irssi/scripts"
+    ".irssi/molokai.theme"
+)
 
-done < "list_files"
+# Cygwin specific files
+
+files_cygwin=(
+    ".minttyrc"
+)
+
+#
+# Deployment script
+#
+
+base_dir=$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )
+
+function deploy_list {
+    declare -a list=("${!1}")
+    for rel_path in ${list[@]}; do
+        source_path=${base_dir}/home/${rel_path}
+        target_path=${HOME}/${rel_path}
+        target_dir=$(dirname "${target_path}")
+
+        if [ ! -d ${target_dir} ]; then
+            mkdir -p ${target_dir}
+        fi
+
+        if [ -e ${target_path} ]; then
+            rm -r ${target_path}
+        fi
+
+        echo "Creating link: ${target_path}"
+        ln -s ${source_path} ${target_path}
+    done
+}
+
+
+deploy_list files_base[@]
+
+
+while [[ $# -gt 0 ]]; do
+    key="$1"
+    case $key in
+        -a|--all)
+            deploy_list files_extended[@]
+            ;;
+        *)
+            # unknown option
+        ;;
+    esac
+    shift # past argument or value
+done
 
 
 
-while IFS= read -r dir_name
-do
-    SOURCE_DIR=${BASEDIR}/$dir_name
-    TARGET_DIR=${HOME}/$dir_name
+#
+# Cygwin specific
+#
 
-    if [ -d ${TARGET_DIR} ] || [ -L ${TARGET_DIR} ]; then
-        rm -rf ${TARGET_DIR}
-    fi
+if [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
+    deploy_list files_cygwin[@]
+fi
 
-    echo "Creating link ${SOURCE_DIR} -> ${TARGET_DIR}"
-    PARENT_DIR=$(dirname "${TARGET_DIR}")
-    mkdir -p "${PARENT_DIR}"
-    ln -s ${SOURCE_DIR} ${TARGET_DIR}
-done < "list_dirs"
