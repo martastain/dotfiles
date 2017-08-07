@@ -1,16 +1,18 @@
-source ~/.mutt/theme
+#
+# Appereance
+#
 
-set pager_index_lines = 10 # number of index lines to show
-set pager_context = 3      # number of context lines to show
-set pager="builtin"
-set pager_stop             # don't go to next message automatically
-set menu_scroll            # scroll in menus
-set tilde                  # show tildes like in vim
-unset markers              # no ugly plus signs
+set pager_index_lines = 10      # number of index lines to show
+set pager_context = 3           # number of context lines to show
+set pager = "builtin"
+set pager_stop                  # don't go to next message automatically
+set menu_scroll                 # scroll in menus
+set tilde                       # show tildes like in vim
+unset markers                   # no ugly plus signs
 
 set sidebar_width=29
 set sidebar_visible=no
-set sidebar_short_path                  # Shorten mailbox names
+set sidebar_short_path          # Shorten mailbox names
 set sidebar_delim_chars="/."
 set sidebar_divider_char="│"
 
@@ -55,20 +57,22 @@ unignore        from: to: cc: date: subject:  # show only these
 unhdr_order     *                             # some distros order things by default
 hdr_order       from: to: cc: date: subject:  # and in this order
 
-
 #
 # Global mail options
 #
 
-set timeout=30
-
-set mailcap_path    = ~/.mutt/mailcap
+set timeout          = 30
+set mailcap_path     = ~/.mutt/mailcap
 
 auto_view            text/html
 alternative_order    text/plain text/enriched text/html
 
-set header_cache     = "~/.cache/mutt/headers"
-set message_cachedir = "~/.cache/mutt/bodies"
+set header_cache     = "~/.cache/mutt"
+set message_cachedir = "~/.cache/mutt"
 set certificate_file = "~/.cache/mutt/certificates"
 
-source ~/.private/special/muttrc
+set record          = ""           # Do not create ~/sent
+set crypt_use_gpgme = no           # Avoid gpgme warning message
+
+source ~/.mutt/theme               # Color scheme
+source ~/.private/special/muttrc   # Mailboxes
