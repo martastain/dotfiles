@@ -43,12 +43,20 @@ function deploy_list {
         target_path=${HOME}/${rel_path}
         target_dir=$(dirname "${target_path}")
 
+        echo ""
+        echo "Deploying file ${rel_path}"
+
         if [ ! -d ${target_dir} ]; then
+            echo "Creating directory %{target_dir}"
             mkdir -p ${target_dir}
         fi
 
-        if [ -e ${target_path} ]; then
-            rm -r ${target_path}
+        if [ -f ${target_path} ] || [ -L ${target_path} ]; then
+            echo "Removing original file ${target_path}"
+            rm ${target_path}
+        elif [ -d ${target_path} ]; then
+            echo "Removing original directory ${target_path}"
+            rm -rf ${target_path}
         fi
 
         echo "Creating link: ${target_path}"
@@ -58,7 +66,6 @@ function deploy_list {
 
 
 deploy_list files_base[@]
-
 
 while [[ $# -gt 0 ]]; do
     key="$1"
@@ -73,8 +80,6 @@ while [[ $# -gt 0 ]]; do
     shift # past argument or value
 done
 
-
-
 #
 # Cygwin specific
 #
@@ -82,4 +87,3 @@ done
 if [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
     deploy_list files_cygwin[@]
 fi
-
