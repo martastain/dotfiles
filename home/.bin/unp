@@ -1,8 +1,8 @@
-#! /usr/bin/perl
+#!/usr/bin/perl
 #
 # "unp" runs the correct unpack program depending on the file extension
 # of the given parameter.
-# 
+#
 # Author: Eduard Bloch <blade@debian.org>, 2010
 #
 # UI modelled after unp versions 1.x by Eduard Bloch (2000-2009) and original
@@ -18,7 +18,7 @@
 # General Public License for more details.
 #
 # -----------------------------------------------------------------------
-# If you make changes to this script, please feel free to forward the new 
+# If you make changes to this script, please feel free to forward the new
 # version to the author.
 # -----------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ print STDERR "retcode: $retcode\n" if $opt_debug;
 # if the status is bad but the value is zero, return at least 1
 exit ( $retcode ? ( $retcode < 256 ? $retcode : 1 ) : 0 );
 
-sub show_help 
+sub show_help
 {
 printf(gettext("
 USAGE:
@@ -86,7 +86,7 @@ USAGE:
       - extract data.tar.gz after each operation in local directory
       - extract control.tar.gz into control/<package_version_arch>/
    -U Smart mode, acts like -u (see above) if archive contains multiple
-      elements but if there is only one file/directory element then it's stored 
+      elements but if there is only one file/directory element then it's stored
       in the current directory.
    -s Show the list of supported formats
    -v More verbosity
@@ -110,11 +110,11 @@ sub init_formats
 {
    my $sh="/bin/sh";
 
-# Database format: 
+# Database format:
 # - providing packages (human readable)
 # - filename suffix,
-# - libmagic (file tool) pattern, 
-# - process flags (bitfield), 
+# - libmagic (file tool) pattern,
+# - process flags (bitfield),
 # - array of command sets (=arrays of command and arguments). If the first arg
 #   of the command set is an array then it's interpreted as a list of
 #   requirements which need to be checked.
@@ -126,7 +126,7 @@ sub init_formats
 # 8:  stream filters, contents may be extracted if tar format is detected. Only
 #     simple syntax allowed.
 # 16: append suggested target name to calling arguments
-use constant 
+use constant
 {
    TRY_OTHER_TOOLS => 2,
    SHELL_STYLE_ARGS => 4,
@@ -149,22 +149,22 @@ use constant
       ],
 
       [ gettext("tar with xz-utils"), "tar.xz|txz", undef, 0,
-      
+
       [ [ "xz" ], "tar", "--xz", "-x", "-v", "-f"]
       ],
 
       [gettext( "tar with lzip"), "tar.lzip", undef, 0,
-      
+
       [[ "lzip" ], "tar", "--lzip", "-x", "-v", "-f"]
       ],
 
       [gettext( "tar with lzop"), "tar.lzop|tzo", undef, 0,
-      
+
       [[ "lzop" ], "tar", "--lzop", "-x", "-v", "-f"]
       ],
 
       [gettext( "tar with compress"), "tar.z", undef, 0,
-      
+
       [ [ "compress" ], "tar", "-Z", "-x", "-v", "-f"]
       ],
 
@@ -394,7 +394,7 @@ sub try_unarch
             {
                my $rcodeprev=$retcode;
                $retcode += ($catmode ? &cat_one($ifile, $line, @args) : &unpack_one($ifile, $line, @args));
-               
+
                return 1 if($rcodeprev == $retcode);
 
                # try other tools if hinted but never in cat mode in order to prevent data corruption
@@ -574,7 +574,7 @@ sub unpack_one
    push(@cmd, $tgtname) if(APPEND_GEN_NAME & $flags);
 
    print STDERR join(" ", "test cmd line: ", @cmd, "\n") if $opt_debug;
-   
+
    $ret = (system(@cmd) >> 8);
 
    if( $opt_umode_smart)
@@ -622,7 +622,7 @@ sub special_debmode
    mkdir $contgt;
 
    return (system("ar", "x", $file) >> 8 ) +
-   (system("tar", "-z", "-x", "-v", "-f", "control.tar.gz", "-C", 
+   (system("tar", "-z", "-x", "-v", "-f", "control.tar.gz", "-C",
          $contgt) >> 8 ) +
    ( system("tar", "-z", "-x", "-v", "-f", "data.tar.gz") >> 8 );
 }

@@ -38,8 +38,8 @@ set postponed = "imaps://imap.gmail.com/[Gmail]/Drafts"
 set move = no
 set imap_keepalive = 900
 
-folder-hook . 'unset trash'
-folder-hook imaps://imap.gmail.com 'set trash="=[Gmail]/Trash"'
+folder-hook     .                           'unset trash'
+folder-hook     imaps://imap.gmail.com      'set trash="=[Gmail]/Trash"'
 
 mailboxes \
     "+Inbox" \
