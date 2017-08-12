@@ -69,7 +69,7 @@ set show-all-if-ambiguous on
 export TERM='xterm-256color'
 export LANG='en_US.UTF-8'
 export EDITOR=vim
-export FQDN=`hostname -f`
+export FQDN=$(hostname -f 2> /dev/null)
 
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 export HISTIGNORE=$'[ \t]*:&:[fb]g:exit'
@@ -104,4 +104,4 @@ PS1="\[\e]0;\w\a\]\n\[${LCOLOR}\]\u@\h \[${YELLOW}\]\w\[\e[0m\]\n\$ "
 # motd
 #
 
-echo -ne "${DARKGRAY}""Welcome to `hostname`'s terminal, `whoami`.\n"
+echo -ne "${DARKGRAY}""Welcome to $(hostname 2> /dev/null), $(whoami).\n"
