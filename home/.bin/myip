@@ -1,2 +1,2 @@
 #!/bin/bash
-curl http://api.ipify.org
+echo $(curl http://api.ipify.org 2>/dev/null)
