@@ -20,8 +20,6 @@ files_base=(
 files_extended=(
     ".mutt"
     ".ncmpcpp"
-    ".irssi/scripts"
-    ".irssi/molokai.theme"
 )
 
 # Cygwin specific files
