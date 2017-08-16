@@ -4,10 +4,11 @@ startup_message off
 vbell           off
 altscreen       on
 attrcolor       b ".I"
-defbce          on
-#termcapinfo     xterm* 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
-#termcapinfo     xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
-termcapinfo     xterm* ti@:te@
-term            xterm-256color
+bce             on
 deflogin        off                 #Get rid of annoying utmp message under cygwin
 autodetach      on
+
+
+termcapinfo     * ti@:te@
+term            screen-256color
+terminfo        rxvt* 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
