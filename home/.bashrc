@@ -110,4 +110,4 @@ fi
 # motd
 #
 
-echo "${DARKGRAY}Welcome to $FQDN, $USER."
+echo -e "${DARKGRAY}Welcome to $FQDN, $USER."
