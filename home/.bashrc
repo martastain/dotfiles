@@ -1,4 +1,3 @@
-
 #
 # PATH
 #
@@ -7,27 +6,25 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-if [ -d "${HOME}/.bin" ]; then
-    PATH="${HOME}/.bin:$PATH"
-fi
-
-# If cygwin
-
-if [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
-
-    export TERM="xterm-256color"
-    export COMSPEC="/cygdrive/c/Windows/System32/cmd.exe"
-
-    if [ -d "${HOME}/.bin/windows" ]; then
-        PATH="${HOME}/.bin/windows:$PATH"
-    fi
+if [ -d "$HOME/.bin" ]; then
+    PATH="$HOME/.bin:$PATH"
 fi
 
 #
-# If not running interactively, stop here
+# ENV
 #
 
-[[ "$-" != *i* ]] && return
+if [ -d ~/Devel/go ]; then
+    export GOPATH=$(realpath ~/Devel/go)
+fi
+
+export LANG='en_US.UTF-8'
+export EDITOR=vim
+export FQDN=$(hostname -f 2> /dev/null)
+
+export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
+export HISTIGNORE=$'[ \t]*:&:[fb]g:exit'
+export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls'   # Ignore the ls command as well
 
 #
 # Aliases
@@ -38,10 +35,9 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 alias ls='ls -F --color=tty'
-alias dir='ls --color=auto --format=vertical'
-alias vdir='ls --color=auto --format=long'
 alias ll='ls -l'                              # long list
 alias la='ls -A'                              # all but . and ..
+alias lla='ls -lA'
 alias l='ls -CF'
 alias cls='clear'
 alias f="find . | grep "
@@ -49,10 +45,11 @@ alias f="find . | grep "
 alias mp="ncmpcpp"                            # Caffeine desktop music
 alias mc="TERMCAP=\"\" mc"
 
-# Quick access
+#
+# If not running interactively, stop here
+#
 
-alias dl='cd ~/Downloads/'
-alias doc='cd ~/Documents/'
+[[ "$-" != *i* ]] && return
 
 #
 # Private settings (ssh aliases etc)
@@ -69,14 +66,6 @@ fi
 set -o notify
 set completion-ignore-case on
 set show-all-if-ambiguous on
-
-export LANG='en_US.UTF-8'
-export EDITOR=vim
-export FQDN=$(hostname -f 2> /dev/null)
-
-export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
-export HISTIGNORE=$'[ \t]*:&:[fb]g:exit'
-export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls'   # Ignore the ls command as well
 
 BLACK='\e[0;30m'
 BLUE='\e[0;34m'
@@ -104,7 +93,21 @@ fi
 PS1="\[\e]0;\w\a\]\n\[${LCOLOR}\]\u@\h \[${YELLOW}\]\w\[\e[0m\]\n\$ "
 
 #
+# Cygwin
+#
+
+if [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
+
+    export TERM="xterm-256color"
+    export COMSPEC="/cygdrive/c/Windows/System32/cmd.exe"
+
+    if [ -d "$HOME/.bin/windows" ]; then
+        PATH="$HOME/.bin/windows:$PATH"
+    fi
+fi
+
+#
 # motd
 #
 
-echo -ne "${DARKGRAY}""Welcome to $(hostname 2> /dev/null), $(whoami).\n"
+echo "${DARKGRAY}Welcome to $FQDN, $USER."

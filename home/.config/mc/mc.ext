@@ -1,71 +1,15 @@
-### Images ###
-
-type/^GIF
-	Include=image
-
-type/^JPEG
-	Include=image
-
-type/^PC\ bitmap
-	Include=image
-
-type/^PNG
-	Include=image
-
-type/^JNG
-	Include=image
-
-type/^MNG
-	Include=image
-
-type/^TIFF
-	Include=image
-
-type/^PBM
-	Include=image
-
-type/^PGM
-	Include=image
-
-type/^PPM
-	Include=image
-
 #
 # Multimedia
 #
 
-regex/i/\.(wav|mp3|mov|mp4|mkv|aiff|m4a|m4v|mxf|avi)$
-    Open=(vlc %f >/dev/null 2>&1 &)
-#
-# Others
-#
-
-shell/.xcf
-	Open=/usr/lib/mc/ext.d/image.sh open xcf
-
-shell/.xbm
-	Open=/usr/lib/mc/ext.d/image.sh open xbm
-
-shell/.xpm
-	Include=image
-	View=/usr/lib/mc/ext.d/image.sh view xpm %f
-
-shell/.ico
-	Include=image
-
-shell/i/.svg
-	View=%view{ascii} /usr/lib/mc/ext.d/image.sh view svg
-	Open=/usr/lib/mc/ext.d/image.sh open svg
-
-
-
-include/image
+regex/i/\.(jpg|gif|jpeg|png|tiff|tif|tga|targa|bmp|xcf|ico)$
+    View=/usr/bin/asciiview %f
 	Open=~/.config/imageview.sh %f
-	View=%view{ascii} /usr/lib/mc/ext.d/image.sh view ALL_FORMATS
     Edit=gimp %f &
 
 
-
+regex/i/\.(wav|mp3|mov|mp4|mkv|aiff|m4a|m4v|mxf|avi)$
+    Open=(vlc %f >/dev/null 2>&1 &)
 
 
 type/^PDF
