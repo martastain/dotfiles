@@ -43,7 +43,8 @@ alias cls='clear'
 alias f="find . | grep "
 
 alias mp="ncmpcpp"                            # Caffeine desktop music
-alias mc="TERMCAP=\"\" mc"
+#alias mc="TERMCAP=\"\" mc"
+alias mc="TERM=\"xterm-256color\" mc"
 
 #
 # If not running interactively, stop here
