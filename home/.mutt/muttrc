@@ -61,7 +61,6 @@ hdr_order       from: to: cc: date: subject:  # and in this order
 # Global mail options
 #
 
-set timeout          = 30
 set mailcap_path     = ~/.mutt/mailcap
 
 auto_view            text/html
