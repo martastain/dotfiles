@@ -1,0 +1,10 @@
+#!/bin/bash
+
+f1="/tmp/mdiff1"
+f2="/tmp/mdiff2"
+
+mediainfo -f $1 > $f1
+mediainfo -f $2 > $f2
+chmod 666 $f1
+chmod 666 $f2
+vimdiff $f1 $f2
