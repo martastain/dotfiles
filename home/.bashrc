@@ -41,9 +41,9 @@ alias lla='ls -lA'
 alias l='ls -CF'
 alias cls='clear'
 alias f="find . | grep "
+alias p="ps axu | grep "
 
 alias mp="ncmpcpp"                            # Caffeine desktop music
-#alias mc="TERMCAP=\"\" mc"
 alias mc="TERM=\"xterm-256color\" mc"
 
 #
