@@ -9,8 +9,10 @@ regex/i/\.(jpg|gif|jpeg|png|tiff|tif|tga|targa|bmp|xcf|ico)$
 
 
 regex/i/\.(wav|mp3|mov|mp4|mkv|aiff|m4a|m4v|mxf|avi)$
+    View=(vlc %f >/dev/null 2>&1 &)
     Open=(vlc %f >/dev/null 2>&1 &)
 
 
-type/^PDF
+regex/i/\.(pdf)$
+    View=zathura %f
     Open=zathura %f
