@@ -43,7 +43,7 @@ alias cls='clear'
 alias f="find . | grep "
 alias p="ps axu | grep "
 
-alias mp="ncmpcpp"                            # Caffeine desktop music
+alias mp="ncmpcpp"                            # Caffeine desktop music player
 alias mc="TERM=\"xterm-256color\" mc"
 
 #
@@ -106,9 +106,3 @@ if [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
         PATH="$HOME/.bin/windows:$PATH"
     fi
 fi
-
-#
-# motd
-#
-
-echo -e "${DARKGRAY}Welcome to $FQDN, $USER."
