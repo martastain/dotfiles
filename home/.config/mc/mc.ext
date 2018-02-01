@@ -8,7 +8,7 @@ regex/i/\.(jpg|gif|jpeg|png|tiff|tif|tga|targa|bmp|xcf|ico)$
     Edit=gimp %f &
 
 
-regex/i/\.(wav|mp3|mov|mp4|mkv|aiff|m4a|m4v|mxf|avi)$
+regex/i/\.(wav|mp3|mov|mp4|mkv|aiff|m4a|m4v|mxf|avi|flv|wmv)$
     Open=(vlc %f >/dev/null 2>&1 &)
 
 
