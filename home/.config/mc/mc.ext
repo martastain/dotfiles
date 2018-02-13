@@ -45,7 +45,6 @@ regex/i/\.a(rj|[0-9][0-9])$
 
 # rar
 regex/i/\.r(ar|[0-9][0-9])$
-  #Open=rar va -c- %f 2>/dev/null || unrar va -c- %f
   Open=%cd %p/urar://
   View=$VIEWER %f
 
@@ -53,7 +52,6 @@ regex/i/\.r(ar|[0-9][0-9])$
 shell/i/.7z
   Open=%cd %p/u7z://
   View=$VIEWER %f
-
 
 # deb
 regex/\.u?deb$
@@ -69,11 +67,9 @@ regex/i/\.(jpg|gif|jpeg|png|tiff|tif|tga|targa|bmp|xcf|ico)$
 	Open=~/.config/imageview.sh %f
     Edit=gimp %f &
 
-
 regex/i/\.(wav|mp3|mov|mp4|mkv|aiff|m4a|m4v|mxf|avi|flv|wmv)$
     View=mediainfo %f | less
     Open=mpv %f
-
 
 regex/i/\.(pdf)$
     View=pdftotext %f - | less
