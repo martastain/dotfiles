@@ -1,13 +1,17 @@
 #!/bin/bash
 
-viewer="qiv -t -f"
+viewer="feh -FB black --draw-tinted"
 
 if [ -z $2 ]; then
-    FILE="$@"; DIRECTORY="$(dirname "$FILE")";
-    FILES=($(find "$DIRECTORY" -maxdepth 1 -type f | sort));
-    i=0; # calculate offset
+    FILE="$@"
+    DIRECTORY="$(dirname "$FILE")"
+    FILES=($(find "$DIRECTORY" -maxdepth 1 -type f | sort))
+    i=0
     for FILE2 in "${FILES[@]}"; do
-        if [[ "$FILE" == "$FILE2" ]]; then o=$i; break; fi
+        if [[ "$FILE" == "$FILE2" ]]; then
+            o=$i
+            break
+        fi
         i=$((i+1));
     done
 
@@ -15,7 +19,12 @@ if [ -z $2 ]; then
 
     for i in $(seq 1 $n); do
         FILES2[$i]="${FILES[$j]}";
-        if [ $j -lt $m ]; then j=$((i+o)); else j=0; o=$((-1*i)); fi
+        if [ $j -lt $m ]; then
+            j=$((i+o))
+        else
+            j=0
+            o=$((-1*i))
+        fi
     done
 
     ${viewer} ${FILES2[@]};
