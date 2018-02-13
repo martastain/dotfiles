@@ -1,3 +1,65 @@
+### Archives ---------------- ### {{{
+
+# .tgz, .tpz, .tar.gz, .tar.z, .tar.Z, .ipk, .gem, .war
+regex/\.t([gp]?z|ar\.g?[zZ])$|\.ipk$|\.gem$|\.war$
+  Open=%cd %p/utar://
+  View=$VIEWER %f
+
+shell/.tar.bz
+  Open=%cd %p/utar://
+  View=$VIEWER %f
+
+shell/.zip
+  Open=%cd %p/uzip://
+  View=$VIEWER %f
+
+regex/\.t(ar\.bz2|bz2?|b2)$
+  Open=%cd %p/utar://
+  View=$VIEWER %f
+
+# .tar.lzma, .tlz
+regex/\.t(ar\.lzma|lz)$
+  Open=%cd %p/utar://
+  View=lzma -dc %f | $VIEWER
+
+# .tar.xz, .txz
+regex/\.t(ar\.xz|xz)$
+  Open=%cd %p/utar://
+  #View=xz -dc %f 2>/dev/null | $VIEWER
+  View=$VIEWER %f
+
+# tar
+shell/i/.tar
+  Open=%cd %p/utar://
+  View=$VIEWER %f
+
+# lha
+type/^LHa\ .*archive
+  Open=%cd %p/ulha://
+  View=lh l %f | $VIEWER
+
+# arj
+regex/i/\.a(rj|[0-9][0-9])$
+  Open=%cd %p/uarj://
+  View=unarj l | $VIEWER
+
+# rar
+regex/i/\.r(ar|[0-9][0-9])$
+  #Open=rar va -c- %f 2>/dev/null || unrar va -c- %f
+  Open=%cd %p/urar://
+  View=$VIEWER %f
+
+# 7zip archives (they are not man pages)
+shell/i/.7z
+  Open=%cd %p/u7z://
+  View=$VIEWER %f
+
+
+# deb
+regex/\.u?deb$
+  Open=%cd %p/deb://
+  View=$VIEWER %f
+
 #
 # Multimedia
 #
@@ -9,10 +71,10 @@ regex/i/\.(jpg|gif|jpeg|png|tiff|tif|tga|targa|bmp|xcf|ico)$
 
 
 regex/i/\.(wav|mp3|mov|mp4|mkv|aiff|m4a|m4v|mxf|avi|flv|wmv)$
-    View=(vlc %f >/dev/null 2>&1 &)
-    Open=(vlc %f >/dev/null 2>&1 &)
+    View=mediainfo %f | less
+    Open=mpv %f
 
 
 regex/i/\.(pdf)$
-    View=zathura %f
+    View=pdftotext %f - | less
     Open=zathura %f
