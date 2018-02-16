@@ -37,13 +37,11 @@ at = False
 for fname in sorted(os.listdir(directory)):
     if os.path.splitext(fname)[1].lower().lstrip(".") not in VALID_EXTS:
         continue
-
     fname = os.path.join(directory, fname)
 
     if fname == first_image:
         at = True
         continue
-
     if at:
         pre.append(os.path.abspath(fname))
     else:
@@ -53,6 +51,5 @@ cmd = ["feh", "-FB", "black", "--draw-tinted"]
 cmd.append(first_image)
 cmd.extend(pre)
 cmd.extend(post)
-print (cmd)
 p = subprocess.Popen(cmd)
 
