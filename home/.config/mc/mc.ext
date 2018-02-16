@@ -64,7 +64,7 @@ regex/\.u?deb$
 
 regex/i/\.(jpg|gif|jpeg|png|tiff|tif|tga|targa|bmp|xcf|ico)$
     View=/usr/bin/asciiview %f
-	Open=~/.config/imageview.sh %f
+	Open=~/.config/imageview %f
     Edit=gimp %f &
 
 regex/i/\.(wav|mp3|mov|mp4|mkv|aiff|m4a|m4v|mxf|avi|flv|wmv)$
