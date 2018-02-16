@@ -68,7 +68,7 @@ regex/i/\.(jpg|gif|jpeg|png|tiff|tif|tga|targa|bmp|xcf|ico)$
     Edit=gimp %f &
 
 regex/i/\.(wav|mp3|mov|mp4|mkv|aiff|m4a|m4v|mxf|avi|flv|wmv)$
-    View=mediainfo %f | less
+    View=mediainfo -f %f | less
     Open=mpv %f
 
 regex/i/\.(pdf)$
