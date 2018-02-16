@@ -4,6 +4,9 @@ filetype off
 filetype plugin on
 filetype indent on
 
+set mouse=a
+set ttymouse=xterm2
+
 " #############################################################################
 " #                                   Plugins                                 #
 " #############################################################################
@@ -30,6 +33,7 @@ Plugin 'itchyny/lightline.vim'              " Faster than airline
 Plugin 'ap/vim-buftabline'                  " Buffer list in top line
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/nerdtree'
+Plugin 'ryanoasis/vim-devicons'
 
 call vundle#end()
 
@@ -174,6 +178,23 @@ hi BufTabLineHidden     ctermbg=238
 hi BufTabLineFill       ctermbg=238
 autocmd BufWritePre * StripWhitespace
 
+
+let g:lightline = {
+      \ 'component_function': {
+      \   'filetype': 'MyFiletype',
+      \   'fileformat': 'MyFileformat',
+      \ }
+      \ }
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
+
+
 " #############################################################################
 " #                                    Keys                                   #
 " #############################################################################
@@ -186,12 +207,10 @@ xnoremap     >          >gv
 
 map          <C-o>      :NERDTreeToggle<CR>
 map          <F5>       :!./%<CR>
+map          <F7>       :!make<CR>
 map          <F9>       :!reset<CR>
 map          <Tab>      :bn<CR>
 map          <S-Tab>    :bp<CR>
 
-nmap         <S-Enter>  O<Esc>
-nmap         <CR>       o<Esc>
-"nnoremap     <esc>      :noh<return><esc>
 
 au BufRead,BufNewFile *.twig set filetype=html
