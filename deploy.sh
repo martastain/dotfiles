@@ -12,7 +12,6 @@ files_base=(
     ".profile"
     ".selected_editor"
     ".screenrc"
-    ".config/imageview"
 )
 
 # Extended (for workstations) configuration files
