@@ -1,4 +1,7 @@
 lyrics_directory             = "~/.cache/lyrics"
+mpd_music_dir                = "~/Music"
+
+startup_screen               = "media_library"
 
 # Playlist
 song_columns_list_format     = "$L(9)[white]{l} (20)[red]{a} (30)[green]{b}$R(20)[cyan]{t}"
