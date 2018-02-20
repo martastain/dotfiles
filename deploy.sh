@@ -12,6 +12,7 @@ files_base=(
     ".profile"
     ".selected_editor"
     ".screenrc"
+    ".dircolors"
 )
 
 # Extended (for workstations) configuration files

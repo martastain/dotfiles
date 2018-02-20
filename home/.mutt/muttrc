@@ -19,7 +19,7 @@ set sidebar_divider_char="│"
 #
 # Keys
 #
-
+bind index       g          noop
 bind index       gg         first-entry
 bind index       G          last-entry
 bind index,pager R          group-reply
