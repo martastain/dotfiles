@@ -33,7 +33,6 @@ Plugin 'itchyny/lightline.vim'              " Faster than airline
 Plugin 'ap/vim-buftabline'                  " Buffer list in top line
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/nerdtree'
-Plugin 'ryanoasis/vim-devicons'
 
 call vundle#end()
 
@@ -185,15 +184,6 @@ let g:lightline = {
       \   'fileformat': 'MyFileformat',
       \ }
       \ }
-
-function! MyFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction
-
-function! MyFileformat()
-  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-endfunction
-
 
 " #############################################################################
 " #                                    Keys                                   #
