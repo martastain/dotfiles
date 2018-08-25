@@ -74,3 +74,7 @@ regex/i/\.(wav|mp3|mov|mp4|mkv|aiff|m4a|m4v|mxf|avi|flv|wmv|m2t|dv|mpg|mpeg)$
 regex/i/\.(pdf)$
     View=pdftotext %f - | less
     Open=zathura %f
+
+regex/i/\.(svg)$
+    Open=inkscape %f
+

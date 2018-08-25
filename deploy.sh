@@ -6,7 +6,7 @@ files_base=(
     ".vim"
     ".bin"
     ".config/mc"
-
+    ".local/share/mc/skins/monokai.ini"
     ".bashrc"
     ".gitconfig"
     ".profile"
