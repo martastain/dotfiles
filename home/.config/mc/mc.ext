@@ -65,16 +65,34 @@ regex/\.u?deb$
 regex/i/\.(jpg|gif|jpeg|png|tiff|tif|tga|targa|bmp|xcf|ico)$
     View=/usr/bin/asciiview %f
 	Open=~/.config/scripts/imageview.py %f
-    Edit=gimp %f &
+    Edit=(gimp %f > /dev/null 2>&1 &)
 
 regex/i/\.(wav|mp3|mov|mp4|mkv|aiff|m4a|m4v|mxf|avi|flv|wmv|m2t|dv|mpg|mpeg)$
     View=mediainfo -f %f | less
     Open=mpv %f
 
+regex/i/\.(svg)$
+    Open=(inkscape %f > /dev/null 2>&1 &)
+
+#
+# Documents
+#
+
+regex/i/\.(doc)$
+    View=catdoc -a %f | less -c --tilde
+    Open=(libreoffice %f > /dev/null 2>&1 &)
+
+regex/i/\.(docx)$
+    View=unoconv --format text --stdout %f | less -c --tilde
+    Open=(libreoffice %f > /dev/null 2>&1 &)
+
 regex/i/\.(pdf)$
-    View=pdftotext %f - | less
+    View=pdftotext %f - | less -c --tilde
     Open=zathura %f
 
-regex/i/\.(svg)$
-    Open=inkscape %f
+#
+# Code
+#
 
+regex/i/\.(py|c|cpp|html|css|php|h|hpp|json)$
+    View=less -c --tilde %f

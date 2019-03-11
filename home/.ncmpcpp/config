@@ -4,7 +4,9 @@ mpd_music_dir                = "~/Music"
 startup_screen               = "media_library"
 
 # Playlist
-song_columns_list_format     = "$L(9)[white]{l} (20)[red]{a} (30)[green]{b}$R(20)[cyan]{t}"
+# ong_columns_list_format     = "$L(9)[blue]{l} (20)[red]{a} (30)[green]{b}$R(20)[cyan]{t}"
+
+
 playlist_display_mode        = "classic" (classic/columns)
 autocenter_mode              = "no"
 centered_cursor              = "no"
@@ -34,7 +36,7 @@ state_flags_color           = "green"
 main_window_color           = "blue"
 color1                      = "cyan"
 color2                      = "black"
-main_window_highlight_color = "blue"
+main_window_highlight_color = "red"
 progressbar_color           = "black"
 statusbar_color             = "green"
 active_column_color         = "red"

@@ -10,6 +10,10 @@ if [ -d "$HOME/.bin" ]; then
     PATH="$HOME/.bin:$PATH"
 fi
 
+if [ -d "$HOME/.private/bin" ]; then
+    PATH="$HOME/.private/bin:$PATH"
+fi
+
 #
 # ENV
 #
@@ -25,6 +29,11 @@ export FQDN=$(hostname -f 2> /dev/null)
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 export HISTIGNORE=$'[ \t]*:&:[fb]g:exit'
 export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls'   # Ignore the ls command as well
+
+if [ -f /usr/share/source-highlight/src-hilite-lesspipe.sh ]; then
+    export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+    export LESS=' -R '
+fi
 
 #
 # Aliases
