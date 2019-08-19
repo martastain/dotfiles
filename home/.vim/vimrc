@@ -33,6 +33,10 @@ Plugin 'itchyny/lightline.vim'              " Faster than airline
 Plugin 'ap/vim-buftabline'                  " Buffer list in top line
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/nerdtree'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+
 
 call vundle#end()
 
@@ -202,6 +206,14 @@ map          <F7>       :!make<CR>
 map          <F9>       :!reset<CR>
 map          <Tab>      :bn<CR>
 map          <S-Tab>    :bp<CR>
+map          <C-PageUp> :bp<CR>
+map          <C-PageDown> :bn<CR>
+
+
+nmap <Leader>f :Files<CR>
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>h :History<CR>
+nmap <Leader>l :Lines<CR>
 
 
 au BufRead,BufNewFile *.twig set filetype=html
