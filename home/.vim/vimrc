@@ -169,8 +169,8 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 let g:multi_cursor_exit_from_insert_mode = 0
-hi IndentGuidesOdd      ctermbg=234
-hi IndentGuidesEven     ctermbg=234
+hi IndentGuidesOdd      ctermbg=237
+hi IndentGuidesEven     ctermbg=237
 
 hi ExtraWhitespace      ctermbg=161
 
@@ -198,13 +198,20 @@ vnoremap . :norm.<CR>
 xnoremap     <          <gv
 xnoremap     >          >gv
 
-map          <C-o>      :NERDTreeToggle<CR>
-map          <F5>       :!./%<CR>
-map          <F7>       :!make<CR>
-map          <F9>       :!reset<CR>
-map          <Tab>      :bn<CR>
-map          <S-Tab>    :bp<CR>
-map          <C-PageUp> :bp<CR>
+map          <C-o>        :NERDTreeToggle<CR>
+map          <F5>         :!./%<CR>
+map          <F7>         :!make<CR>
+map          <F9>         :!reset<CR>
+map          <Tab>        :bn<CR>
+map          <S-Tab>      :bp<CR>
+map          <C-PageUp>   :bp<CR>
 map          <C-PageDown> :bn<CR>
+
+nnoremap <silent>   <PageUp>    25<Up>
+nnoremap <silent>   <PageDown>  25<Down>
+vnoremap <silent>   <PageUp>    25<Up>
+vnoremap <silent>   <PageDown>  25<Down>
+inoremap <PageDown>             <Nop>
+inoremap <PageUp>               <Nop>
 
 au BufRead,BufNewFile *.twig set filetype=html
