@@ -67,7 +67,7 @@ regex/i/\.(jpg|gif|jpeg|png|tiff|tif|tga|targa|bmp|xcf|ico)$
 	Open=~/.config/scripts/imageview.py %f
     Edit=(gimp %f > /dev/null 2>&1 &)
 
-regex/i/\.(wav|mp3|mov|mp4|mkv|aiff|m4a|m4v|mxf|avi|flv|wmv|m2t|dv|mpg|mpeg)$
+regex/i/\.(wav|mp3|mov|mp4|mkv|aiff|m4a|m4v|mxf|avi|flv|wmv|m2t|dv|mpg|mpeg|aac|ts|webm)$
     View=mediainfo -f %f | less
     Open=mpv %f
 

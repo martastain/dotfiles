@@ -100,7 +100,16 @@ else
     LCOLOR=$GREEN
 fi
 
+case "$TERM" in
+xterm*|rxvt*)
+    echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"
+    ;;
+*)
+    ;;
+esac
+
 PS1="\[\e]0;\w\a\]\n\[${LCOLOR}\]\u@\h \[${YELLOW}\]\w\[\e[0m\]\n\$ "
+
 
 #
 # Cygwin

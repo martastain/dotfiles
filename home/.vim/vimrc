@@ -34,6 +34,9 @@ Plugin 'ap/vim-buftabline'                  " Buffer list in top line
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'dpelle/vim-LanguageTool'
+Plugin 'yuttie/comfortable-motion.vim'
+Plugin 'ryanoasis/vim-devicons'
 
 
 call vundle#end()
@@ -62,6 +65,7 @@ set backspace=2
 set shiftwidth=4
 set tabstop=4
 
+
 " Text wrap
 
 set backspace=indent,eol,start
@@ -83,15 +87,15 @@ set wildignore+=.DS_Store,.git/**,tmp/**,*.log,.bundle/**,tags
 set wildignore+=*.rbc,.rbx,*.scssc,*.sassc,.sass-cache,*.pyc,*.gem
 set wildignore+=*.jpg,*.jpeg,*.tiff,*.gif,*.png,*.svg,*.psd,.mov,*.mp4
 
-if has('multi_byte') && &encoding ==# 'utf-8'
+"if has('multi_byte') && &encoding ==# 'utf-8'
     let &listchars = 'trail:·,tab:»·,eol:¶,extends:→,precedes:←,nbsp:×'
     let &fillchars = 'stl: ,stlnc: ,vert:│'
-    if has('patch-7.4.338')
+  "  if has('patch-7.4.338')
         let &showbreak = nr2char(8618).' '
         set breakindent
         set breakindentopt=sbr
-    endif
-endif
+ "   endif
+"endif
 
 " -- Search --
 
@@ -122,6 +126,7 @@ set nobackup
 set nowb
 set noswapfile
 set hidden                     " Hide buffers instead closing them with opening a new file
+
 
 if exists("+undofile")
     " Store undofile in to fixed location
@@ -178,7 +183,9 @@ hi BufTabLineCurrent    ctermbg=0   cterm=bold
 hi BufTabLineActive     ctermbg=238
 hi BufTabLineHidden     ctermbg=238
 hi BufTabLineFill       ctermbg=238
-autocmd BufWritePre * StripWhitespace
+
+hi SpellBad                         term=underline
+
 
 
 let g:lightline = {
@@ -188,9 +195,14 @@ let g:lightline = {
       \ }
       \ }
 
+let g:ctrlp_working_path_mode = 'ra'
+let g:languagetool_jar='$HOME/opt/languagetool/languagetool-commandline.jar'
+let g:languagetool_disable_rules="DASH_RULE,WHITESPACE_RULE,EN_QUOTES"
+
 " #############################################################################
 " #                                    Keys                                   #
 " #############################################################################
+
 
 set pastetoggle=<F2>
 vnoremap . :norm.<CR>
@@ -215,3 +227,6 @@ inoremap <PageDown>             <Nop>
 inoremap <PageUp>               <Nop>
 
 au BufRead,BufNewFile *.twig set filetype=html
+au BufWritePre * StripWhitespace
+
+au BufRead,BufWinEnter * match Error /\t/
