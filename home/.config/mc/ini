@@ -96,9 +96,9 @@ menubar_visible=false
 free_space=true
 horizontal_split=false
 vertical_equal=true
-left_panel_size=106
 horizontal_equal=true
 top_panel_size=30
+
 
 [Misc]
 timeformat_recent=%b %e %H:%M

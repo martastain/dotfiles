@@ -25,6 +25,7 @@ set rtp+=~/.vim/bundle/vundle/
 
 call vundle#begin()
 
+Plugin 'drewtempelmeyer/palenight.vim'
 Plugin 'gmarik/vundle'                      " Autoupdate vundle
 Plugin 'terryma/vim-multiple-cursors'       " Multiple cursors (use C-n)
 Plugin 'thinca/vim-visualstar'              " Enable * in visual mode
@@ -33,11 +34,9 @@ Plugin 'itchyny/lightline.vim'              " Faster than airline
 Plugin 'ap/vim-buftabline'                  " Buffer list in top line
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'dpelle/vim-LanguageTool'
-Plugin 'yuttie/comfortable-motion.vim'
 Plugin 'ryanoasis/vim-devicons'
-
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 call vundle#end()
 
@@ -87,7 +86,7 @@ set wildignore+=.DS_Store,.git/**,tmp/**,*.log,.bundle/**,tags
 set wildignore+=*.rbc,.rbx,*.scssc,*.sassc,.sass-cache,*.pyc,*.gem
 set wildignore+=*.jpg,*.jpeg,*.tiff,*.gif,*.png,*.svg,*.psd,.mov,*.mp4
 
-"if has('multi_byte') && &encoding ==# 'utf-8'
+if has('multi_byte') && &encoding ==# 'utf-8'
     let &listchars = 'trail:·,tab:»·,eol:¶,extends:→,precedes:←,nbsp:×'
     let &fillchars = 'stl: ,stlnc: ,vert:│'
   "  if has('patch-7.4.338')
@@ -95,7 +94,7 @@ set wildignore+=*.jpg,*.jpeg,*.tiff,*.gif,*.png,*.svg,*.psd,.mov,*.mp4
         set breakindent
         set breakindentopt=sbr
  "   endif
-"endif
+endif
 
 " -- Search --
 
@@ -109,7 +108,10 @@ set magic
 " #                        System and theme                                   #
 " #############################################################################
 
-colorscheme molokai
+set background=dark
+let g:palenight_terminal_italics=1
+colorscheme palenight
+
 
 set timeoutlen=50
 set noerrorbells
@@ -165,6 +167,11 @@ endfunction
 com! DiffSaved call s:DiffWithSaved()
 
 
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+
 " #############################################################################
 " #                             Plugin settings                               #
 " #############################################################################
@@ -174,19 +181,17 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 let g:multi_cursor_exit_from_insert_mode = 0
+let g:vim_markdown_folding_disabled = 1
+
 hi IndentGuidesOdd      ctermbg=237
 hi IndentGuidesEven     ctermbg=237
-
 hi ExtraWhitespace      ctermbg=161
-
 hi BufTabLineCurrent    ctermbg=0   cterm=bold
 hi BufTabLineActive     ctermbg=238
 hi BufTabLineHidden     ctermbg=238
 hi BufTabLineFill       ctermbg=238
 
 hi SpellBad                         term=underline
-
-
 
 let g:lightline = {
       \ 'component_function': {
@@ -195,9 +200,20 @@ let g:lightline = {
       \ }
       \ }
 
-let g:ctrlp_working_path_mode = 'ra'
-let g:languagetool_jar='$HOME/opt/languagetool/languagetool-commandline.jar'
-let g:languagetool_disable_rules="DASH_RULE,WHITESPACE_RULE,EN_QUOTES"
+
+:let g:NERDTreeWinSize=40
+
+augroup filetype_nerdtree
+    au!
+    au FileType nerdtree call s:disable_lightline_on_nerdtree()
+    au WinEnter,BufWinEnter,TabEnter * call s:disable_lightline_on_nerdtree()
+augroup END
+
+fu s:disable_lightline_on_nerdtree() abort
+    let nerdtree_winnr = index(map(range(1, winnr('$')), {_,v -> getbufvar(winbufnr(v), '&ft')}), 'nerdtree') + 1
+    call timer_start(0, {-> nerdtree_winnr && setwinvar(nerdtree_winnr, '&stl', '%#Normal#')})
+endfu
+
 
 " #############################################################################
 " #                                    Keys                                   #
@@ -211,13 +227,16 @@ xnoremap     <          <gv
 xnoremap     >          >gv
 
 map          <C-o>        :NERDTreeToggle<CR>
+map          <F3>         :NERDTreeToggle<CR>
 map          <F5>         :!./%<CR>
 map          <F7>         :!make<CR>
 map          <F9>         :!reset<CR>
+
 map          <Tab>        :bn<CR>
 map          <S-Tab>      :bp<CR>
-map          <C-PageUp>   :bp<CR>
-map          <C-PageDown> :bn<CR>
+autocmd FileType nerdtree noremap <buffer> <Tab> <ESC>:wincmd w <bar> bn<CR>
+autocmd FileType nerdtree noremap <buffer> <S-Tav> <ESC>:wincmd w <bar> bp<CR>
+
 
 nnoremap <silent>   <PageUp>    25<Up>
 nnoremap <silent>   <PageDown>  25<Down>
@@ -231,7 +250,6 @@ nnoremap <silent> <C-Left>      <c-w>h
 nnoremap <silent> <C-Up>        <c-w>k
 nnoremap <silent> <C-Down>      <c-w>j
 
-au BufRead,BufNewFile *.twig set filetype=html
-au BufWritePre * StripWhitespace
-
-au BufRead,BufWinEnter * match Error /\t/
+au BufRead,BufNewFile       *.twig  set filetype=html
+au BufWritePre              *       StripWhitespace
+au BufRead,BufWinEnter      *       match Error /\t/
