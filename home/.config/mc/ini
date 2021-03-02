@@ -87,18 +87,20 @@ editor_state_full_filename=false
 safe_overwrite=false
 
 [Layout]
-message_visible=false
-keybar_visible=false
-xterm_title=true
+message_visible=0
+keybar_visible=0
+xterm_title=0
 output_lines=0
-command_prompt=true
-menubar_visible=false
-free_space=true
-horizontal_split=false
-vertical_equal=true
-horizontal_equal=true
+command_prompt=1
+menubar_visible=0
+free_space=0
+horizontal_split=0
+vertical_equal=1
+horizontal_equal=0
 top_panel_size=30
 
+
+left_panel_size=106
 
 [Misc]
 timeformat_recent=%b %e %H:%M
