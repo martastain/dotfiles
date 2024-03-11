@@ -6,7 +6,8 @@ return {
     "williamboman/mason.nvim",
     lazy = false,
     config = function()
-      require("mason").setup()
+      require("mason").setup({
+      })
     end,
   },
   {
@@ -15,10 +16,11 @@ return {
     opts = {
       auto_install = true,
       ensure_installed = {
-        "tsserver",
+        "lua_ls",
         "pyright",
         "ruff_lsp",
-        "lua_ls",
+        "rust_analyzer",
+        "tsserver",
       }
     },
   },
@@ -27,14 +29,16 @@ return {
     lazy = false,
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
       local lspconfig = require("lspconfig")
-      lspconfig.tsserver.setup({
-        capabilities = capabilities
-      })
+
+      --
+      -- LSP servers
+      --
+
       lspconfig.html.setup({
         capabilities = capabilities
       })
+
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
         settings = {
@@ -45,6 +49,7 @@ return {
           }
         }
       })
+
       lspconfig.pyright.setup({
         capabilities = capabilities,
         settings = {
@@ -65,6 +70,15 @@ return {
           filetypes = { "python" },
         }
       }
+
+      lspconfig.rust_analyzer.setup({
+        capabilities = capabilities
+      })
+
+      lspconfig.tsserver.setup({
+        capabilities = capabilities
+      })
+
 
     end,
   },

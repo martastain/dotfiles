@@ -1,4 +1,4 @@
-return {
+return {  
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
@@ -10,6 +10,7 @@ return {
         indent = { enable = true },
         ensured_installed = {
           "bash",
+          "c",
           "comment",
           "css",
           "html",
@@ -18,12 +19,15 @@ return {
           "jsonc",
           "lua",
           "markdown",
+          "markdown_inline",
           "python",
           "regex",
           "rust",
           "scss",
+          "sql",
           "toml",
           "typescript",
+          "vim",
           "yaml",
         },
       })

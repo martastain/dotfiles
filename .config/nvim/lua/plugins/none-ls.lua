@@ -3,6 +3,11 @@ return {
 	config = function()
 		local null_ls = require("null-ls")
 		null_ls.setup({
+      ensure_installed = {
+        "prettier",
+        "stylua",
+      },
+
 			sources = {
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.prettier,
