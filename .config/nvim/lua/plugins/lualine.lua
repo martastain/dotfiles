@@ -5,7 +5,7 @@ return {
 
       options = {
         icons_enabled = true,
-        theme = "onedark",
+        theme = "catppuccin",
         section_separators = { left = "", right = "" },
         component_separators = { left = "", right = "" },
         always_divide_middle = true,
