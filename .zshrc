@@ -42,6 +42,7 @@ export ZSH="$HOME/.oh-my-zsh"
 #
 
 export LESS=
+export GH_PAGER="less -FRX"
 
 # TODO: use nvim only if it's installed
 alias vim=nvim
