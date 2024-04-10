@@ -17,6 +17,7 @@ return {
       auto_install = true,
       ensure_installed = {
         "lua_ls",
+        "eslint",
         "pyright",
         "ruff_lsp",
         "rust_analyzer",
@@ -37,6 +38,14 @@ return {
 
       lspconfig.html.setup({
         capabilities = capabilities
+      })
+
+      lspconfig.eslint.setup({
+        capabilities = capabilities,
+        settings = {
+          lintOnSave = true,
+          formatOnSave = true,
+        }
       })
 
       lspconfig.lua_ls.setup({
