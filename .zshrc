@@ -85,6 +85,7 @@ fi
 
 alias ll='ls -lg --time-style=long-iso'
 alias la='ls -lga --time-style=long-iso'
+alias l=ll
 
 alias grep='grep --color'
 alias egrep='egrep --color=auto'
