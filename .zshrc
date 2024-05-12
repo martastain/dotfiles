@@ -63,7 +63,6 @@ ZSH_THEME="" # Do not use OMZ theme (use starship.rs)
 plugins=(
    dirhistory
    docker
-   fzf
    gh
    git
    poetry
