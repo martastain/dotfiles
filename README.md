@@ -19,14 +19,48 @@ Terminal emulator configuration and GUI goodies are not included in this repo.
 ### Base packages
 
 ```bash
-apt-get install -y \
-    git zsh build-essential stow jq tmux httpie curl ripgrep exa
+apt-get install -y git zsh build-essential stow jq tmux httpie curl ripgrep exa
+```
+
+Then set your shell to zsh
+
+## Deploy dotfiles
+
+```bash
+git clone https://github.com/martastain/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+stow .
+```
+
+### Starship.rs
+
+```bash
+curl -sS https://starship.rs/install.sh | sh
 ```
 
 ### Oh-my-zsh
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+```
+
+Install zsh-autosuggestions
+
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
+### Mise
+
+```bash
+curl https://mise.run | sh
+```
+
+then download node and python in order to run Neovim language servers
+
+```bash
+mise use --global node@22
+mise use --global python@3.12
 ```
 
 ### Neovim
@@ -59,17 +93,6 @@ LSP is configured for sane (and some not so sane) languages:
 - Navigation between panes is done with `C+PgUp` and `C+PgDown`.
 - New pane is created with `C+t`
 
-### Mise
-
-```bash
-curl https://mise.run | sh
-```
-
-### Starship.rs
-
-```bash
-curl -sS https://starship.rs/install.sh | sh
-```
 
 ### Poetry
 
@@ -94,13 +117,3 @@ Sane git settings:
 git config --global init.defaultBranch main
 git config --global push.default current
 ```
-
-## Deploy dotfiles
-
-```bash
-git clone https://github.com/martastain/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-stow .
-```
-
-
