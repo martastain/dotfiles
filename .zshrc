@@ -23,8 +23,7 @@ export LC_ALL=
 #
 
 [[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
-[[ -d $HOME/.local/bin/poetry ]] && export PATH=$HOME/.local/bin/poetry:$PATH
-[[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
+[[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
 
 #
 # Editor
@@ -90,6 +89,13 @@ alias grep='grep --color'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
+
+alias decompose='docker compose down -v --remove-orphans'
+alias dcl='docker compose logs -f --tail=300'
+
+#
+# Terminal
+#
 
 if [ "$TERM" = "xterm-kitty" ]; then
   alias icat="echo && kitty +kitten icat --align=left"
