@@ -89,6 +89,12 @@ alias grep='grep --color'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
+# Clockify CLI
+alias ccin='clockify-cli in'
+alias ccout='clockify-cli out'
+alias ccshow='clockify-cli show'
+alias pp='ptpython'
+
 
 alias decompose='docker compose down -v --remove-orphans'
 alias dcl='docker compose logs -f --tail=300'

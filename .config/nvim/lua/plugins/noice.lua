@@ -6,6 +6,9 @@ return {
     "rcarriga/nvim-notify",
     },
   opts = {
-    -- add any options here
+    cmdline ={
+      enabled = true,
+      view = "cmdline"
+    },
   },
 }

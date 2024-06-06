@@ -30,14 +30,13 @@ vim.keymap.set('v', '<', '<gv', {silent = true})
 vim.keymap.set('v', '>', '>gv', {silent = true})
 
 
--- Git
 -- Git commands are prefixed with <leader>g
 -- <leader>gb: git blame
 -- <leader>gp: git preview hunk
--- 
--- use git for everything else
+-- <leader>gt: git toggle current line blame
 
 vim.keymap.set('n', '<leader>gb', ':Gitsigns blame_line<CR>', {silent = true})
+vim.keymap.set('n', '<leader>gt', ':Gitsigns toggle_current_line_blame<CR>' )
 vim.keymap.set('n', '<leader>gp', ':Gitsigns preview_hunk<CR>', {silent = true})
 
 -- Lsp
