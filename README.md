@@ -19,7 +19,7 @@ Terminal emulator configuration and GUI goodies are not included in this repo.
 ### Base packages
 
 ```bash
-apt-get install -y git zsh build-essential stow jq tmux httpie curl ripgrep exa
+apt-get install -y git zsh build-essential stow jq tmux httpie curl ripgrep exa fuse
 ```
 
 ### Starship.rs
@@ -49,6 +49,34 @@ chsh -s /bin/bash
 ```
 
 Log out and log in again
+
+Python deps
+
+```bash
+apt-get install\
+  build-essential \
+  checkinstall \
+  gdb \
+  lcov \
+  libbz2-dev \
+  libc6-dev \
+  libffi-dev \
+  libgdbm-compat-dev \
+  libgdbm-dev \
+  liblzma-dev \
+  libncurses5-dev \
+  libreadline6-dev \
+  libreadline8 \
+  libsqlite3-dev \
+  libssl-dev \
+  lzma \
+  lzma-dev \ 
+  pkg-config \
+  tk-dev \
+  uuid-dev \
+  zlib1g-dev
+```
+
 
 Then download node and python in order to run Neovim language servers
 
