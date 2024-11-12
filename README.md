@@ -22,41 +22,35 @@ Terminal emulator configuration and GUI goodies are not included in this repo.
 apt-get install -y git zsh build-essential stow jq tmux httpie curl ripgrep exa
 ```
 
-Then set your shell to zsh
-
-## Deploy dotfiles
-
-```bash
-git clone https://github.com/martastain/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-stow .
-```
-
 ### Starship.rs
 
 ```bash
 curl -sS https://starship.rs/install.sh | sh
+curl https://mise.run | sh
 ```
 
 ### Oh-my-zsh
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-```
-
-Install zsh-autosuggestions
-
-```bash
+curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
 
-### Mise
+## Deploy dotfiles
+
+And set your shell to zsh
 
 ```bash
-curl https://mise.run | sh
+rm ~/.zshrc
+git clone https://github.com/martastain/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+stow .
+chsh -s /bin/bash
 ```
 
-then download node and python in order to run Neovim language servers
+Log out and log in again
+
+Then download node and python in order to run Neovim language servers
 
 ```bash
 mise use --global node@22
