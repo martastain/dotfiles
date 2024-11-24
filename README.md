@@ -45,7 +45,7 @@ rm ~/.zshrc
 git clone https://github.com/martastain/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 stow .
-chsh -s /bin/bash
+chsh -s /usr/bin/zsh
 ```
 
 Log out and log in again
@@ -70,7 +70,7 @@ apt-get install\
   libsqlite3-dev \
   libssl-dev \
   lzma \
-  lzma-dev \ 
+  lzma-dev \
   pkg-config \
   tk-dev \
   uuid-dev \
