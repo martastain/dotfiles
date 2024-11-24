@@ -81,6 +81,11 @@ apt-get install\
 Then download node and python in order to run Neovim language servers
 
 ```bash
+curl https://mise.run | sh
+mise trust
+```
+
+```bash
 mise use --global node@22
 mise use --global python@3.12
 ```
