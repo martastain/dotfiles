@@ -20,7 +20,7 @@ return {
         "lua_ls",
         "eslint",
         "pyright",
-        "ruff_lsp",
+        "ruff",
         "rust_analyzer",
         "ts_ls",
         "helm_ls",
@@ -74,10 +74,9 @@ return {
         },
       })
 
-      lspconfig.ruff_lsp.setup({
+      lspconfig.ruff.setup({
         capabilities = capabilities,
         settings = {
-          cmd = { "ruff-lsp", "--stdio" },
           filetypes = { "python" },
         }
       })
