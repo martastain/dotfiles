@@ -16,12 +16,14 @@ return {
     opts = {
       auto_install = true,
       ensure_installed = {
+        "bashls",
         "lua_ls",
         "eslint",
         "pyright",
         "ruff_lsp",
         "rust_analyzer",
         "ts_ls",
+        "helm_ls",
       }
     },
   },
@@ -72,13 +74,13 @@ return {
         },
       })
 
-      lspconfig.ruff_lsp.setup {
+      lspconfig.ruff_lsp.setup({
         capabilities = capabilities,
         settings = {
           cmd = { "ruff-lsp", "--stdio" },
           filetypes = { "python" },
         }
-      }
+      })
 
       lspconfig.rust_analyzer.setup({
         capabilities = capabilities
