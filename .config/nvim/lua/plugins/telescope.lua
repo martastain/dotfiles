@@ -69,6 +69,11 @@ return {
       vim.keymap.set("n", "<leader>fw", builtin.live_grep, {})
       vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 
+      -- map ctrl + p to find files (zed muscle memory)
+      vim.keymap.set("n", "<C-p>", builtin.find_files, {})
+
+
+
       require("telescope").load_extension("ui-select")
     end,
   },
