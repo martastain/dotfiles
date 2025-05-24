@@ -64,8 +64,6 @@ plugins=(
    docker
    gh
    git
-   poetry
-   poetry-env
    zsh-autosuggestions
 )
 
@@ -74,6 +72,8 @@ source $ZSH/oh-my-zsh.sh
 #
 # Aliases
 #
+
+alias va='. ./.venv/bin/activate'
 
 if type exa &> /dev/null; then
   alias ls='exa --color=auto'
