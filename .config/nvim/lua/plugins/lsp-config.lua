@@ -2,27 +2,20 @@
 -- except for the null-ls configuration
 
 return {
+  { "mason-org/mason.nvim", opts = {} },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason-lspconfig.nvim",
     lazy = false,
-    config = function()
-      require("mason").setup({
-      })
-    end,
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    lazy = false,
+    dependencies = { 'neovim/nvim-lspconfig' },
     opts = {
       auto_install = true,
       ensure_installed = {
         "lua_ls",
         "eslint",
         "pyright",
-        "ruff_lsp",
+        "ruff",
         "rust_analyzer",
         "ts_ls",
-        "helm_ls",
       }
     },
   },
@@ -41,13 +34,13 @@ return {
         capabilities = capabilities
       })
 
-      lspconfig.eslint.setup({
-        capabilities = capabilities,
-        settings = {
-          lintOnSave = true,
-          formatOnSave = true,
-        }
-      })
+      -- lspconfig.eslint.setup({
+      --   capabilities = capabilities,
+      --   settings = {
+      --     lintOnSave = true,
+      --     formatOnSave = true,
+      --   }
+      -- })
 
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
@@ -73,12 +66,12 @@ return {
         },
       })
 
-      lspconfig.ruff_lsp.setup {
+      lspconfig.ruff.setup {
         capabilities = capabilities,
-        settings = {
-          cmd = { "ruff-lsp", "--stdio" },
-          filetypes = { "python" },
-        }
+        -- settings = {
+        --   cmd = { "ruff-lsp", "--stdio" },
+        --   filetypes = { "python" },
+        -- }
       }
 
       lspconfig.rust_analyzer.setup({
