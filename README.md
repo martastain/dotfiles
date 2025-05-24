@@ -19,44 +19,71 @@ Terminal emulator configuration and GUI goodies are not included in this repo.
 ### Base packages
 
 ```bash
-apt-get install -y git zsh build-essential stow jq tmux httpie curl ripgrep exa
-```
-
-Then set your shell to zsh
-
-## Deploy dotfiles
-
-```bash
-git clone https://github.com/martastain/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-stow .
+apt-get install -y git zsh build-essential stow jq tmux httpie curl ripgrep exa fuse
 ```
 
 ### Starship.rs
 
 ```bash
 curl -sS https://starship.rs/install.sh | sh
+curl https://mise.run | sh
 ```
 
 ### Oh-my-zsh
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-```
-
-Install zsh-autosuggestions
-
-```bash
+curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
 
-### Mise
+## Deploy dotfiles
+
+And set your shell to zsh
+
+```bash
+rm ~/.zshrc
+git clone https://github.com/martastain/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+stow .
+chsh -s /usr/bin/zsh
+```
+
+Log out and log in again
+
+Python deps
+
+```bash
+apt-get install\
+  build-essential \
+  checkinstall \
+  gdb \
+  lcov \
+  libbz2-dev \
+  libc6-dev \
+  libffi-dev \
+  libgdbm-compat-dev \
+  libgdbm-dev \
+  liblzma-dev \
+  libncurses5-dev \
+  libreadline6-dev \
+  libreadline8 \
+  libsqlite3-dev \
+  libssl-dev \
+  lzma \
+  lzma-dev \
+  pkg-config \
+  tk-dev \
+  uuid-dev \
+  zlib1g-dev
+```
+
+
+Then download node and python in order to run Neovim language servers
 
 ```bash
 curl https://mise.run | sh
+mise trust
 ```
-
-then download node and python in order to run Neovim language servers
 
 ```bash
 mise use --global node@22

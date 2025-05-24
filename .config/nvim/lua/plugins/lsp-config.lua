@@ -10,6 +10,7 @@ return {
     opts = {
       auto_install = true,
       ensure_installed = {
+        "bashls",
         "lua_ls",
         "eslint",
         "pyright",
@@ -66,19 +67,22 @@ return {
         },
       })
 
-      lspconfig.ruff.setup {
+      lspconfig.ruff.setup({
         capabilities = capabilities,
-        -- settings = {
-        --   cmd = { "ruff-lsp", "--stdio" },
-        --   filetypes = { "python" },
-        -- }
-      }
+        settings = {
+          filetypes = { "python" },
+        }
+      })
 
       lspconfig.rust_analyzer.setup({
         capabilities = capabilities
       })
 
       lspconfig.ts_ls.setup({
+        capabilities = capabilities
+      })
+
+      lspconfig.bashls.setup({
         capabilities = capabilities
       })
 

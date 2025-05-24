@@ -51,6 +51,10 @@ vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, {})
 vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, {})
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, {})
 
+-- alternate config: ctrl+shift+i to format
+vim.keymap.set('n', "<C-I>", vim.lsp.buf.format, {})
+
+
 -- Neotree
 -- Toggle neotree with <C-n> or <C-o>
 
