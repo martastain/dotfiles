@@ -14,13 +14,11 @@ fi
 echo "Installing tools with mise..."
 mise install \
   bat@latest \
-  black@latest \
   bun@latest \
   delta@latest \
   deno@latest \
   fzf@latest \
   go@latest \
-  lazygit@latest \
   lua-language-server@latest \
   neovim@nightly \
   node@lts \
