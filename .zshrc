@@ -26,24 +26,11 @@ export LC_ALL=
 [[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
 
 #
-# Editor
+# Pager
 #
 
 export LESS=
 export GH_PAGER="less -FRX"
-
-if type nvim &> /dev/null; then
-  export VISUAL='nvim'
-  export EDITOR='nvim'
-  alias vim=nvim
-elif type vim &> /dev/null; then
-  export VISUAL='vim'
-  export EDITOR='vim'
-else
-  export VISUAL='vi'
-  export EDITOR='vi'
-fi
-
 
 #
 # Utils
@@ -110,13 +97,22 @@ alias grep='grep --color'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
-# Clockify CLI
-alias ccin='clockify-cli in'
-alias ccout='clockify-cli out'
-alias ccshow='clockify-cli show'
-alias pp='ptpython'
-
+# Docker
 
 alias decompose='docker compose down -v --remove-orphans'
 alias dcl='docker compose logs -f --tail=300'
 
+# Editor
+# Set after mise
+
+if type nvim &> /dev/null; then
+  export VISUAL='nvim'
+  export EDITOR='nvim'
+  alias vim=nvim
+elif type vim &> /dev/null; then
+  export VISUAL='vim'
+  export EDITOR='vim'
+else
+  export VISUAL='vi'
+  export EDITOR='vi'
+fi

@@ -40,7 +40,6 @@ npm install -g \
   @mermaid-js/mermaid-cli \
   @tailwindcss/language-server \
   @vtsls/language-server \
-  cspell \
   oxlint \
   pnpm \
   prettier \
@@ -51,7 +50,6 @@ npm install -g \
 
 # Install tools with uv
 echo "Installing tools with uv..."
-uv tool install codespell
 uv tool install isort
 uv tool install pyright
 uv tool install ruff

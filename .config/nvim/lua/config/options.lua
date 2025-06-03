@@ -103,13 +103,3 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_python3_provider = 0
-
--- Setup options for Neovide
--- Install neovide: ❯ brew install --ignore-dependencies  neovide
-if vim.g.neovide then
-  vim.o.guifont = "Maple Font NF:h20"
-  vim.g.neovide_hide_mouse_when_typing = true
-  vim.g.neovide_cursor_antialiasing = false
-  vim.g.neovide_input_macos_option_key_is_meta = "only_left"
-  vim.g.neovide_input_ime = true
-end

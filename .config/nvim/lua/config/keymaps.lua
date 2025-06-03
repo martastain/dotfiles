@@ -1,5 +1,6 @@
 local map = vim.keymap.set
 
+-- All time favorite keymaps
 map('n', '<PageUp>', '25<Up>')
 map('n', '<PageDown>', '25<Down>')
 map('v', '<PageUp>', '25<Up>')
@@ -12,10 +13,8 @@ map('n', '<s-tab>', ':bprev<CR>', {silent = true})
 map("n", "<C-n>", ":Neotree filesystem toggle left<CR>", {silent = true})
 map("n", "<C-o>", ":Neotree filesystem toggle left<CR>", {silent = true})
 
-
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
-
 
 -- better indenting
 map("v", "<", "<gv")
@@ -24,7 +23,6 @@ map("v", ">", ">gv")
 -- commenting
 map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
 map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
-
 
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
@@ -55,12 +53,11 @@ map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
-
 -- Silent keymap option
 local opts = { silent = true }
 
--- Better paste
--- remap "p" in visual mode to delete the highlighted text without overwriting your yanked/copied text, and then paste the content from the unnamed register.
+-- remap "p" in visual mode to delete the highlighted text without 
+-- overwriting yanked text, and then paste the content from the unnamed register.
 map("v", "p", '"_dP', opts)
 
 -- Copy whole file content to clipboard with C-c
@@ -69,44 +66,12 @@ map("n", "<C-c>", ":%y+<CR>", opts)
 -- Select all text in buffer with Alt-a
 map("n", "<A-a>", "ggVG", { noremap = true, silent = true, desc = "Select all" })
 
-
--- Move live up or down moving
--- map("n", "<A-Down>", ":m .+1<CR>", opts)
--- map("n", "<A-Up>", ":m .-2<CR>", opts)
--- map("i", "<A-Down>", "<Esc>:m .+1<CR>==gi", opts)
--- map("i", "<A-Up>", "<Esc>:m .-2<CR>==gi", opts)
+-- Move visual selection up and down with Alt-Up and Alt-Down
 map("v", "<A-Down>", ":m '>+1<CR>gv=gv", opts)
 map("v", "<A-Up>", ":m '<-2<CR>gv=gv", opts)
 
--- Fix Spell checking
-map("n", "z0", "1z=", {
-  desc = "Fix world under cursor",
-})
-
--- Toggle wrap
-map("n", "<leader>tw", "<cmd>set wrap!<CR>", {
-  desc = "Toggle Wrap",
-  silent = true,
-})
-
--- Toggle spell
-map("n", "<leader>ts", "<cmd>set spell!<CR>", {desc = "Toggle Spell", silent = true, })
-
-map(
-  "n",
-  "<leader>uS",
-  "<cmd>lua require('utils.cspell').add_word_to_c_spell_dictionary()<CR>",
-  { noremap = true, silent = true, desc = "Add unknown to cspell dictionary" }
-)
-
--- LSP
-
-map("n", "<leader>la", vim.lsp.buf.code_action, {})
-map("n", "<leader>lf", vim.lsp.buf.format, {})
-map('n', "<C-I>", vim.lsp.buf.format, {})
 
 -- Git
-
 map('n', '<leader>gb', ':Gitsigns blame_line<CR>', {silent = true})
 map('n', '<leader>gt', ':Gitsigns toggle_current_line_blame<CR>' )
 map('n', '<leader>gp', ':Gitsigns preview_hunk<CR>', {silent = true})
