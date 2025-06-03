@@ -70,6 +70,27 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 #
+# Terminal
+#
+
+if [ "$TERM" = "xterm-kitty" ]; then
+  alias icat="echo && kitty +kitten icat --align=left"
+  alias ssh="kitty +kitten ssh"
+fi
+
+if type starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
+
+if type mise &> /dev/null; then
+  eval "$(mise activate zsh)"
+fi
+
+if [ -f $HOME/.cargo/env ]; then
+  source "$HOME/.cargo/env"
+fi
+
+#
 # Aliases
 #
 
@@ -99,23 +120,3 @@ alias pp='ptpython'
 alias decompose='docker compose down -v --remove-orphans'
 alias dcl='docker compose logs -f --tail=300'
 
-#
-# Terminal
-#
-
-if [ "$TERM" = "xterm-kitty" ]; then
-  alias icat="echo && kitty +kitten icat --align=left"
-  alias ssh="kitty +kitten ssh"
-fi
-
-if type starship &> /dev/null; then
-  eval "$(starship init zsh)"
-fi
-
-if type mise &> /dev/null; then
-  eval "$(mise activate zsh)"
-fi
-
-if [ -f $HOME/.cargo/env ]; then
-  source "$HOME/.cargo/env"
-fi
