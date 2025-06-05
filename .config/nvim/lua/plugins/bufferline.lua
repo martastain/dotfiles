@@ -18,7 +18,6 @@ return {
         color_icons = false,
         show_close_icons = false,
       }
-
     })
   end
 }

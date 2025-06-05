@@ -1,24 +1,22 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+require "config.options"
+require "config.autocmds"
+require "config.lazy"
+require "config.keymaps"
+
+local ts_server = vim.g.lsp_typescript_server or "ts_ls" -- "ts_ls" or "vtsls" for TypeScript
+
+vim.lsp.enable {
+  ts_server,
+  "lua_ls",
+  "biome",
+  "json",
+  "pyright",
+  "ruff",
+  "tailwindcss",
+}
+
+-- Load Lsp on-demand, e.g: eslint is disable by default
+-- e.g: We could enable eslint by set vim.g.lsp_on_demands = {"eslint"}
+if vim.g.lsp_on_demands then
+  vim.lsp.enable(vim.g.lsp_on_demands)
 end
-vim.opt.rtp:prepend(lazypath)
-
-require("core")
-require("mapping")
-
-require("lazy").setup("plugins", {
-  -- automatically check for config file changes and reload the ui
-  -- (it is annoying, so screw it)
-  change_detection = {
-    enabled = false,
-    notify = false,
-  },
-})
