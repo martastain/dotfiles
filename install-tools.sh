@@ -4,33 +4,27 @@
 if ! command -v mise &> /dev/null; then
     echo "Installing mise..."
     curl https://mise.run | sh
-    # Add mise to shell
-    echo 'eval "$(mise activate)"' >> ~/.bashrc
-    echo 'eval "$(mise activate)"' >> ~/.zshrc
-    echo 'eval "$(mise activate)"' >> ~/.config/fish/config.fish
+    mise activate
 fi
 
-# Install tools with mise first
-echo "Installing tools with mise..."
-mise install \
-  bat@latest \
-  bun@latest \
-  delta@latest \
-  deno@latest \
-  fzf@latest \
-  go@latest \
-  lua-language-server@latest \
-  neovim@nightly \
-  node@lts \
-  rg@latest \
-  ruff@latest \
-  rye@latest \
-  stylua@latest \
-  usage@latest \
-  uv@latest \
-  yarn@1.22.22
+mise use \
+  deno \
+  dust \
+  jq \
+  fzf \
+  gh \
+  lua-language-server \
+  neovim \
+  node:lts \
+  python:3.13 \
+  rg \
+  uv \
+  yarn
 
+#
 # Install npm packages
+#
+
 echo "Installing npm packages..."
 npm install -g \
   @antfu/ni \
@@ -51,5 +45,3 @@ echo "Installing tools with uv..."
 uv tool install isort
 uv tool install pyright
 uv tool install ruff
-
-echo "All tools have been installed successfully!"

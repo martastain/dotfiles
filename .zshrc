@@ -79,7 +79,20 @@ fi
 
 #
 # Aliases
+# Must be defined after mise is loaded
 #
+
+if type nvim &> /dev/null; then
+  export VISUAL='nvim'
+  export EDITOR='nvim'
+  alias vim=nvim
+elif type vim &> /dev/null; then
+  export VISUAL='vim'
+  export EDITOR='vim'
+else
+  export VISUAL='vi'
+  export EDITOR='vi'
+fi
 
 alias va='. ./.venv/bin/activate'
 
@@ -101,18 +114,3 @@ alias fgrep='fgrep --color=auto'
 
 alias decompose='docker compose down -v --remove-orphans'
 alias dcl='docker compose logs -f --tail=300'
-
-# Editor
-# Set after mise
-
-if type nvim &> /dev/null; then
-  export VISUAL='nvim'
-  export EDITOR='nvim'
-  alias vim=nvim
-elif type vim &> /dev/null; then
-  export VISUAL='vim'
-  export EDITOR='vim'
-else
-  export VISUAL='vi'
-  export EDITOR='vi'
-fi

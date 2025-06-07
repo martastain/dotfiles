@@ -1,4 +1,5 @@
 return {
+  {
   "zbirenbaum/copilot.lua",
   event = "InsertEnter",
   config = function()
@@ -19,5 +20,18 @@ return {
       }
     end, 100)
   end,
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "github/copilot.vim" },
+      { "nvim-lua/plenary.nvim", branch = "master" },
+    },
+    build = "make tiktoken", -- Only on MacOS or Linux
+    opts = {
+      -- See Configuration section for options
+    },
+  },
 }
+
 
