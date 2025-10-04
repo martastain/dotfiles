@@ -36,6 +36,10 @@ map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
 map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
 
+map("n", "<A-v>", "<cmd>vsplit | terminal<cr>i", { desc = "Vertical Split Terminal" })
+map("n", "<A-h>", "<cmd>split | terminal<cr>i", { desc = "Horizontal Split Terminal" })
+
+
 -- windows
 map("n", "<leader>ww", "<C-W>p", { desc = "Other Window", remap = true })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
