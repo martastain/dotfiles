@@ -60,11 +60,6 @@ source $ZSH/oh-my-zsh.sh
 # Terminal
 #
 
-if [ "$TERM" = "xterm-kitty" ]; then
-  alias icat="echo && kitty +kitten icat --align=left"
-  alias ssh="kitty +kitten ssh"
-fi
-
 if type starship &> /dev/null; then
   eval "$(starship init zsh)"
 fi
