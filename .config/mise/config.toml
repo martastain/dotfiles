@@ -1,7 +1,7 @@
 [tools]
 python = "3.12"
 node = "latest"
-neovim = "0.11.3"
+neovim = "latest"
 gh = "latest"
 jq = "latest"
 jless = "latest"
@@ -10,6 +10,9 @@ aws = "latest"
 fd = "latest"
 k9s = "latest"
 npm = "latest"
+duf = "latest"
+fzf = "latest"
+zoxide = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
