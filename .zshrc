@@ -1,21 +1,16 @@
+# zmodload zsh/zprof
+
+autoload -Uz add-zsh-hook
+
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+
 #
 # Locale
 #
 
 export LANG="en_US.UTF-8"
-export LC_CTYPE="en_US.UTF-8"
-export LC_NUMERIC="en_US.UTF-8"
-export LC_TIME="en_US.UTF-8"
-export LC_COLLATE="en_US.UTF-8"
-export LC_MONETARY="en_US.UTF-8"
-export LC_MESSAGES="en_US.UTF-8"
-export LC_PAPER="en_US.UTF-8"
-export LC_NAME="en_US.UTF-8"
-export LC_ADDRESS="en_US.UTF-8"
-export LC_TELEPHONE="en_US.UTF-8"
-export LC_MEASUREMENT="en_US.UTF-8"
-export LC_IDENTIFICATION="en_US.UTF-8"
-export LC_ALL=
+export LC_ALL="en_US.UTF-8"
 
 #
 # Paths
@@ -46,44 +41,56 @@ fi
 # Plugins
 #
 
-# Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
-# Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
    mkdir -p "$(dirname $ZINIT_HOME)"
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-
-# Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
+
 # Add in zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
+zinit light-mode for \
+  zsh-users/zsh-autosuggestions \
+  zsh-users/zsh-syntax-highlighting \
+  zsh-users/zsh-completions \
+  Aloxaf/fzf-tab
 
-# Add in snippets
-zinit snippet OMZL::git.zsh
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-zinit snippet OMZP::aws
-zinit snippet OMZP::command-not-found
-
+#
 # Load completions
-autoload -Uz compinit && compinit
+#
 
-zinit cdreplay -q
+# --- Completion system ---
+autoload -Uz compinit
+typeset -U fpath
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zcompcache
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
 
+ZCD=~/.zcompdump
+
+# If dump doesn’t exist or is older than 1 day, rebuild it
+if [[ ! -f ${ZCD} || $(date +%s -r ${ZCD}) -lt $(($(date +%s) - 86400)) ]]; then
+  compinit -u -C -d ${ZCD}
+  zcompile ${ZCD}
+else
+  compinit -C -d ${ZCD}
+fi
+
+
+#
 # Keybindings
+#
+
 bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
 # Fix broken terminals
-
 bindkey '^[w' kill-region
 bindkey '^[[1;5D' backward-word   # Ctrl+Left
 bindkey '^[[1;5C' forward-word    # Ctrl+Right
@@ -105,10 +112,6 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# Completion styling
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
@@ -141,8 +144,7 @@ fi
 
 
 alias grep='grep --color'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
+alias egrep='grep -E --color=auto'
 
 # Docker
 
@@ -167,10 +169,15 @@ if [ -f $HOME/.cargo/env ]; then
   source "$HOME/.cargo/env"
 fi
 
-if type fzf &> /dev/null; then
-  eval "$(fzf --zsh)"
+if type fzf &>/dev/null; then
+  _fzf_lazy() { eval "$(fzf --zsh)"; unfunction _fzf_lazy }
+  add-zsh-hook precmd _fzf_lazy
 fi
 
-if type zoxide &> /dev/null; then
-  eval "$(zoxide init --cmd cd zsh)"
+if type zoxide &>/dev/null; then
+  _zoxide_lazy() { eval "$(zoxide init --cmd cd zsh)"; unfunction _zoxide_lazy }
+  add-zsh-hook precmd _zoxide_lazy
 fi
+
+
+# zprof
