@@ -1,3 +1,6 @@
+-- Treesitter configuration
+
+
 local function deduplicate(list)
   local seen = {}
   local result = {}
@@ -34,6 +37,8 @@ return {
       "diff",
       "html",
       "javascript",
+      "jinja",
+      "jinja2",
       "jsdoc",
       "json",
       "jsonc",

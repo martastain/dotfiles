@@ -62,7 +62,6 @@ zinit light-mode for \
 # Load completions
 #
 
-# --- Completion system ---
 autoload -Uz compinit
 typeset -U fpath
 zstyle ':completion:*' use-cache on
@@ -111,6 +110,7 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
+
 
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'

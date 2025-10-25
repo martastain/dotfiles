@@ -1,3 +1,5 @@
+-- Oil: A better file explorer for Neovim
+
 return  {
   'stevearc/oil.nvim',
   lazy = false,

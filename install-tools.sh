@@ -7,19 +7,7 @@ if ! command -v mise &> /dev/null; then
     mise activate
 fi
 
-mise use \
-  deno \
-  dust \
-  jq \
-  fzf \
-  gh \
-  lua-language-server \
-  neovim \
-  node:lts \
-  python:3.13 \
-  rg \
-  uv \
-  yarn
+mise install
 
 #
 # Install npm packages
@@ -42,6 +30,5 @@ npm install -g \
 
 # Install tools with uv
 echo "Installing tools with uv..."
-uv tool install isort
 uv tool install pyright
 uv tool install ruff
