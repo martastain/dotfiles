@@ -49,7 +49,7 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 
 source "${ZINIT_HOME}/zinit.zsh"
-
+source "${HOME}/.config/zsh-catppuccin.zsh"
 
 # Add in zsh plugins
 zinit light-mode for \
@@ -165,6 +165,13 @@ export GH_PAGER="less -FRX"
 export FQDN=$(hostname -f 2> /dev/null)
 alias myip=curl http://api.ipify.org 2> /dev/null
 
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#363A4F,bg:#24273A,spinner:#F4DBD6,hl:#ED8796 \
+--color=fg:#CAD3F5,header:#ED8796,info:#C6A0F6,pointer:#F4DBD6 \
+--color=marker:#B7BDF8,fg+:#CAD3F5,prompt:#C6A0F6,hl+:#ED8796 \
+--color=selected-bg:#494D64 \
+--color=border:#6E738D,label:#CAD3F5"
+
 if [ -f $HOME/.cargo/env ]; then
   source "$HOME/.cargo/env"
 fi
@@ -178,6 +185,5 @@ if type zoxide &>/dev/null; then
   _zoxide_lazy() { eval "$(zoxide init --cmd cd zsh)"; unfunction _zoxide_lazy }
   add-zsh-hook precmd _zoxide_lazy
 fi
-
 
 # zprof
