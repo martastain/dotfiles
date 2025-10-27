@@ -47,6 +47,7 @@ M.action = setmetatable({}, {
 })
 
 
+
 M.eslint_config_exists = function()
   local current_dir = vim.fn.getcwd()
   local config_files = {

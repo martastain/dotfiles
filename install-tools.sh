@@ -24,8 +24,8 @@ npm install -g \
   pnpm \
   prettier \
   rustywind \
-  typescript-language-server \
   typescript \
+  typescript-language-server \
   vscode-langservers-extracted
 
 # Install tools with uv
