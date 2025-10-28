@@ -69,6 +69,7 @@ zstyle ':completion:*' cache-path ~/.zcompcache
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
+zstyle ':completion:*' completer _complete _ignored _expand_alias
 
 ZCD=~/.zcompdump
 
@@ -112,8 +113,6 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 
@@ -127,6 +126,9 @@ alias ll='ls -lg --time-style=long-iso'
 alias la='ls -lga --time-style=long-iso'
 alias l=ll
 
+alias -g ...='../..'
+alias -g ....='../../..'
+
 alias c='clear'
 alias va='. ./.venv/bin/activate'
 
@@ -134,9 +136,11 @@ if type nvim &> /dev/null; then
   export VISUAL='nvim'
   export EDITOR='nvim'
   alias vim=nvim
+  alias vi=nvim
 elif type vim &> /dev/null; then
   export VISUAL='vim'
   export EDITOR='vim'
+  alias vi=vim
 else
   export VISUAL='vi'
   export EDITOR='vi'
@@ -145,9 +149,6 @@ fi
 
 alias grep='grep --color'
 alias egrep='grep -E --color=auto'
-
-# Docker
-
 alias decompose='docker compose down -v --remove-orphans'
 alias dcl='docker compose logs -f --tail=300'
 
@@ -159,11 +160,8 @@ export LESS=
 export GH_PAGER="less -FRX"
 
 #
-# Utils
+# Fzf
 #
-
-export FQDN=$(hostname -f 2> /dev/null)
-alias myip=curl http://api.ipify.org 2> /dev/null
 
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#363A4F,bg:#24273A,spinner:#F4DBD6,hl:#ED8796 \
@@ -172,17 +170,28 @@ export FZF_DEFAULT_OPTS=" \
 --color=selected-bg:#494D64 \
 --color=border:#6E738D,label:#CAD3F5"
 
-if [ -f $HOME/.cargo/env ]; then
-  source "$HOME/.cargo/env"
-fi
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 if type fzf &>/dev/null; then
   _fzf_lazy() { eval "$(fzf --zsh)"; unfunction _fzf_lazy }
   add-zsh-hook precmd _fzf_lazy
 fi
 
+#
+# Utils
+#
+
+export FQDN=$(hostname -f 2> /dev/null)
+alias myip=curl http://api.ipify.org 2> /dev/null
+
+
+if [ -f $HOME/.cargo/env ]; then
+  source "$HOME/.cargo/env"
+fi
+
 if type zoxide &>/dev/null; then
-  _zoxide_lazy() { eval "$(zoxide init --cmd cd zsh)"; unfunction _zoxide_lazy }
+  _zoxide_lazy() { eval "$(zoxide init --cmd z zsh)"; unfunction _zoxide_lazy }
   add-zsh-hook precmd _zoxide_lazy
 fi
 
