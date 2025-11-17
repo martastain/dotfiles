@@ -1,5 +1,5 @@
 [tools]
-python = "3.12"
+python = "3.13"
 node = "latest"
 neovim = "latest"
 gh = "latest"
@@ -17,6 +17,10 @@ bat = "latest"
 lua-language-server = "latest"
 uv = "latest"
 stylua = "latest"
+starship = "latest"
+tmux = "latest"
+fastfetch = "latest"
+yt-dlp = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []

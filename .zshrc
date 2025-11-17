@@ -19,13 +19,6 @@ export LC_ALL="en_US.UTF-8"
 [[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 [[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
 
-#
-# Prompt
-#
-
-if type starship &> /dev/null; then
-  eval "$(starship init zsh)"
-fi
 
 
 #
@@ -36,6 +29,13 @@ if type mise &> /dev/null; then
   eval "$(mise activate zsh)"
 fi
 
+#
+# Prompt
+#
+
+if type starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
 
 #
 # Plugins
@@ -94,6 +94,7 @@ bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 bindkey '^[[1;5D' backward-word   # Ctrl+Left
 bindkey '^[[1;5C' forward-word    # Ctrl+Right
+bindkey "^[[3~" delete-char
 
 #
 # History

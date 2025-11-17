@@ -25,7 +25,6 @@ return {
         -- Controls whether the documentation window will automatically show when selecting a completion item
         documentation = {
           auto_show = true,
-          border = "rounded",
         },
         menu = {
           border = "rounded",
