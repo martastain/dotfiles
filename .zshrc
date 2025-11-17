@@ -153,6 +153,15 @@ alias egrep='grep -E --color=auto'
 alias decompose='docker compose down -v --remove-orphans'
 alias dcl='docker compose logs -f --tail=300'
 
+
+#
+# Muscle memory fixes
+#
+
+
+alias gti='git'
+
+
 #
 # Pager
 #
