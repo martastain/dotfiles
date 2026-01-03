@@ -160,7 +160,7 @@ alias dcl='docker compose logs -f --tail=300'
 
 
 alias gti='git'
-
+alias ducks='du -cks * | sort -rn | head -20'
 
 #
 # Pager

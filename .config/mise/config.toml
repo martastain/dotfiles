@@ -21,6 +21,7 @@ starship = "latest"
 tmux = "latest"
 fastfetch = "latest"
 yt-dlp = "latest"
+ripgrep = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
