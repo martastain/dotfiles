@@ -13,6 +13,7 @@ npm = "latest"
 duf = "latest"
 fzf = "latest"
 zoxide = "latest"
+ghorg = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
