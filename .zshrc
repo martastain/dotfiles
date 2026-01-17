@@ -1,21 +1,16 @@
+# zmodload zsh/zprof
+
+autoload -Uz add-zsh-hook
+
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+
 #
 # Locale
 #
 
 export LANG="en_US.UTF-8"
-export LC_CTYPE="en_US.UTF-8"
-export LC_NUMERIC="en_US.UTF-8"
-export LC_TIME="en_US.UTF-8"
-export LC_COLLATE="en_US.UTF-8"
-export LC_MONETARY="en_US.UTF-8"
-export LC_MESSAGES="en_US.UTF-8"
-export LC_PAPER="en_US.UTF-8"
-export LC_NAME="en_US.UTF-8"
-export LC_ADDRESS="en_US.UTF-8"
-export LC_TELEPHONE="en_US.UTF-8"
-export LC_MEASUREMENT="en_US.UTF-8"
-export LC_IDENTIFICATION="en_US.UTF-8"
-export LC_ALL=
+export LC_ALL="en_US.UTF-8"
 
 #
 # Paths
@@ -24,13 +19,6 @@ export LC_ALL=
 [[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 [[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
 
-#
-# Prompt
-#
-
-if type starship &> /dev/null; then
-  eval "$(starship init zsh)"
-fi
 
 
 #
@@ -41,52 +29,72 @@ if type mise &> /dev/null; then
   eval "$(mise activate zsh)"
 fi
 
+#
+# Prompt
+#
+
+if type starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
 
 #
 # Plugins
 #
 
-# Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
-# Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
    mkdir -p "$(dirname $ZINIT_HOME)"
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-
-# Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
+source "${HOME}/.config/zsh-catppuccin.zsh"
 
 # Add in zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
+zinit light-mode for \
+  zsh-users/zsh-autosuggestions \
+  zsh-users/zsh-syntax-highlighting \
+  zsh-users/zsh-completions \
+  Aloxaf/fzf-tab
 
-# Add in snippets
-zinit snippet OMZL::git.zsh
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-zinit snippet OMZP::aws
-zinit snippet OMZP::command-not-found
-
+#
 # Load completions
-autoload -Uz compinit && compinit
+#
 
-zinit cdreplay -q
+autoload -Uz compinit
+typeset -U fpath
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zcompcache
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':completion:*' completer _complete _ignored _expand_alias
 
+ZCD=~/.zcompdump
+
+# If dump doesn’t exist or is older than 1 day, rebuild it
+if [[ ! -f ${ZCD} || $(date +%s -r ${ZCD}) -lt $(($(date +%s) - 86400)) ]]; then
+  compinit -u -C -d ${ZCD}
+  zcompile ${ZCD}
+else
+  compinit -C -d ${ZCD}
+fi
+
+
+#
 # Keybindings
+#
+
 bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
 # Fix broken terminals
-
 bindkey '^[w' kill-region
 bindkey '^[[1;5D' backward-word   # Ctrl+Left
 bindkey '^[[1;5C' forward-word    # Ctrl+Right
+bindkey "^[[3~" delete-char
 
 #
 # History
@@ -105,12 +113,7 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# Completion styling
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
 
 # Aliases
 
@@ -124,6 +127,9 @@ alias ll='ls -lg --time-style=long-iso'
 alias la='ls -lga --time-style=long-iso'
 alias l=ll
 
+alias -g ...='../..'
+alias -g ....='../../..'
+
 alias c='clear'
 alias va='. ./.venv/bin/activate'
 
@@ -131,9 +137,11 @@ if type nvim &> /dev/null; then
   export VISUAL='nvim'
   export EDITOR='nvim'
   alias vim=nvim
+  alias vi=nvim
 elif type vim &> /dev/null; then
   export VISUAL='vim'
   export EDITOR='vim'
+  alias vi=vim
 else
   export VISUAL='vi'
   export EDITOR='vi'
@@ -141,13 +149,18 @@ fi
 
 
 alias grep='grep --color'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-
-# Docker
-
+alias egrep='grep -E --color=auto'
 alias decompose='docker compose down -v --remove-orphans'
 alias dcl='docker compose logs -f --tail=300'
+
+
+#
+# Muscle memory fixes
+#
+
+
+alias gti='git'
+alias ducks='du -cks * | sort -rn | head -20'
 
 #
 # Pager
@@ -157,20 +170,39 @@ export LESS=
 export GH_PAGER="less -FRX"
 
 #
+# Fzf
+#
+
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#363A4F,bg:#24273A,spinner:#F4DBD6,hl:#ED8796 \
+--color=fg:#CAD3F5,header:#ED8796,info:#C6A0F6,pointer:#F4DBD6 \
+--color=marker:#B7BDF8,fg+:#CAD3F5,prompt:#C6A0F6,hl+:#ED8796 \
+--color=selected-bg:#494D64 \
+--color=border:#6E738D,label:#CAD3F5"
+
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+if type fzf &>/dev/null; then
+  _fzf_lazy() { eval "$(fzf --zsh)"; unfunction _fzf_lazy }
+  add-zsh-hook precmd _fzf_lazy
+fi
+
+#
 # Utils
 #
 
 export FQDN=$(hostname -f 2> /dev/null)
 alias myip=curl http://api.ipify.org 2> /dev/null
 
+
 if [ -f $HOME/.cargo/env ]; then
   source "$HOME/.cargo/env"
 fi
 
-if type fzf &> /dev/null; then
-  eval "$(fzf --zsh)"
+if type zoxide &>/dev/null; then
+  _zoxide_lazy() { eval "$(zoxide init --cmd z zsh)"; unfunction _zoxide_lazy }
+  add-zsh-hook precmd _zoxide_lazy
 fi
 
-if type zoxide &> /dev/null; then
-  eval "$(zoxide init --cmd cd zsh)"
-fi
+# zprof

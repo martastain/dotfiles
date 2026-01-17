@@ -7,7 +7,7 @@ return {
     require("bufferline").setup({
       highlights = {
         buffer_selected = {
-          bold = false
+          bold = false,
         },
       },
       options = {

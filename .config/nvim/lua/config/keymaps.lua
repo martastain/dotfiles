@@ -6,12 +6,12 @@ map('n', '<PageDown>', '25<Down>')
 map('v', '<PageUp>', '25<Up>')
 map('v', '<PageDown>', '25<Down>')
 
-map('n', '<leader>x', ':bd<CR>', {silent = true})
-map('n', '<tab>', ':bnext<CR>', {silent = true})
-map('n', '<s-tab>', ':bprev<CR>', {silent = true})
+map('n', '<leader>x', ':bd<CR>', { silent = true })
+map('n', '<tab>', ':bnext<CR>', { silent = true })
+map('n', '<s-tab>', ':bprev<CR>', { silent = true })
 
-map("n", "<C-n>", ":Neotree filesystem toggle left<CR>", {silent = true})
-map("n", "<C-o>", ":Neotree filesystem toggle left<CR>", {silent = true})
+map("n", "<C-n>", ":Neotree filesystem toggle left<CR>", { silent = true })
+map("n", "<C-o>", ":Neotree filesystem toggle left<CR>", { silent = true })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
@@ -60,7 +60,7 @@ map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 -- Silent keymap option
 local opts = { silent = true }
 
--- remap "p" in visual mode to delete the highlighted text without 
+-- remap "p" in visual mode to delete the highlighted text without
 -- overwriting yanked text, and then paste the content from the unnamed register.
 map("v", "p", '"_dP', opts)
 
@@ -76,7 +76,6 @@ map("v", "<A-Up>", ":m '<-2<CR>gv=gv", opts)
 
 
 -- Git
-map('n', '<leader>gb', ':Gitsigns blame_line<CR>', {silent = true})
-map('n', '<leader>gt', ':Gitsigns toggle_current_line_blame<CR>' )
-map('n', '<leader>gp', ':Gitsigns preview_hunk<CR>', {silent = true})
-map('n', '<leader>gg', ':Telescope git_branches<CR>', {silent = true})
+map('n', '<leader>gb', ':Gitsigns blame_line<CR>', { silent = true })
+map('n', '<leader>gt', ':Gitsigns toggle_current_line_blame<CR>')
+map('n', '<leader>gp', ':Gitsigns preview_hunk<CR>', { silent = true })

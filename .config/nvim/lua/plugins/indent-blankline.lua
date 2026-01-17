@@ -1,3 +1,6 @@
+-- Indent Blankline Configuration
+-- Shows indentation levels with thin vertical lines
+
 return {
   "lukas-reineke/indent-blankline.nvim",
   config = function()

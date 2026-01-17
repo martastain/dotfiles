@@ -150,6 +150,15 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
+-- Set filetype for .jinja files
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = augroup "jinja_filetype",
+  pattern = { "*.jinja", "*.jinja2" },
+  callback = function()
+    vim.opt_local.filetype = "htmldjango"
+  end,
+})
+
 -- Set filetype for .ejs files
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   group = augroup "ejs_filetype",
