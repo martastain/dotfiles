@@ -22,6 +22,8 @@ tmux = "latest"
 fastfetch = "latest"
 yt-dlp = "latest"
 ripgrep = "latest"
+yazi = "latest"
+tree-sitter = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []

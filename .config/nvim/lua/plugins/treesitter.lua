@@ -1,50 +1,28 @@
 return {
-  'nvim-treesitter/nvim-treesitter',
-  build = ":TSUpdate",
+  "romus204/tree-sitter-manager.nvim",
+  dependencies = {}, -- tree-sitter CLI must be installed system-wide
   config = function()
-    local configs = require 'nvim-treesitter.configs'
-    configs.setup {
-      ensure_installed = {
-        "bash",
-        "c",
-        "diff",
-        "html",
-        "htmldjango",
-        "javascript",
-        "jinja",
-        "jsdoc",
-        "json",
-        "jsonc",
-        "lua",
-        "luadoc",
-        "luap",
-        "markdown",
-        "markdown_inline",
-        "printf",
-        "python",
-        "query",
-        "regex",
-        "toml",
-        "tsx",
-        "typescript",
-        "vim",
-        "vimdoc",
-        "xml",
-        "yaml",
-        'elixir',
-      },
-      highlight = {
-        enable = true
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<C-space>",
-          node_incremental = "<C-space>",
-          scope_incremental = false,
-          node_decremental = "<bs>",
-        },
-      },
-    }
+    require("tree-sitter-manager").setup({
+      -- Default Options
+      -- ensure_installed = {}, -- list of parsers to install at the start of a neovim session
+      -- border = nil, -- border style for the window (e.g. "rounded", "single"), if nil, use the default border style defined by 'vim.o.winborder'. See :h 'winborder' for more info.
+      -- auto_install = false, -- if enabled, install missing parsers when editing a new file
+      -- highlight = true, -- treesitter highlighting is enabled by default
+      -- languages = {}, -- override or add new parser sources
+      -- parser_dir = vim.fn.stdpath("data") .. "/site/parser",
+      -- query_dir = vim.fn.stdpath("data") .. "/site/queries",
+    })
   end
 }
+
+
+-- return {
+--   'nvim-treesitter/nvim-treesitter',
+--   branch = "main",
+--   build = ":TSUpdate",
+--   opts = {
+--     auto_install = true,
+--     highlight = { enable = true },
+--     indent = { enable = true },
+--   },
+-- }

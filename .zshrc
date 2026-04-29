@@ -115,7 +115,9 @@ setopt hist_find_no_dups
 
 
 
+#
 # Aliases
+#
 
 if type exa &> /dev/null; then
   alias ls='exa --color=auto'
@@ -152,15 +154,9 @@ alias grep='grep --color'
 alias egrep='grep -E --color=auto'
 alias decompose='docker compose down -v --remove-orphans'
 alias dcl='docker compose logs -f --tail=300'
-
-
-#
-# Muscle memory fixes
-#
-
+alias ducks='du -cks * | sort -rn | head -20'
 
 alias gti='git'
-alias ducks='du -cks * | sort -rn | head -20'
 
 #
 # Pager
