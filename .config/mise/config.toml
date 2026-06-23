@@ -17,6 +17,10 @@ bat = "latest"
 lua-language-server = "latest"
 uv = "latest"
 stylua = "latest"
+yazi = "latest"
+stripe = "latest"
+yt-dlp = "latest"
+eza = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []

@@ -113,18 +113,19 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 
+alias ll='ls -lg --time-style=long-iso'
+alias la='ls -lga --time-style=long-iso'
 
 # Aliases
 
-if type exa &> /dev/null; then
-  alias ls='exa --color=auto'
+if type eza &> /dev/null; then
+  alias ll='eza -l --icons=auto --time-style=long-iso --group-directories-first'
 else
   alias ls='ls -F --color=tty'
 fi
 
-alias ll='ls -lg --time-style=long-iso'
-alias la='ls -lga --time-style=long-iso'
 alias l=ll
+alias la=ll -h
 
 alias -g ...='../..'
 alias -g ....='../../..'
