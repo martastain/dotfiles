@@ -19,13 +19,6 @@ export LC_ALL="en_US.UTF-8"
 [[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 [[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
 
-#
-# Prompt
-#
-
-if type starship &> /dev/null; then
-  eval "$(starship init zsh)"
-fi
 
 
 #
@@ -36,6 +29,13 @@ if type mise &> /dev/null; then
   eval "$(mise activate zsh)"
 fi
 
+#
+# Prompt
+#
+
+if type starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
 
 #
 # Plugins
@@ -94,6 +94,7 @@ bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 bindkey '^[[1;5D' backward-word   # Ctrl+Left
 bindkey '^[[1;5C' forward-word    # Ctrl+Right
+bindkey "^[[3~" delete-char
 
 #
 # History
@@ -116,7 +117,9 @@ setopt hist_find_no_dups
 alias ll='ls -lg --time-style=long-iso'
 alias la='ls -lga --time-style=long-iso'
 
+#
 # Aliases
+#
 
 if type eza &> /dev/null; then
   alias ll='eza -l --icons=auto --time-style=long-iso --group-directories-first'
@@ -152,6 +155,9 @@ alias grep='grep --color'
 alias egrep='grep -E --color=auto'
 alias decompose='docker compose down -v --remove-orphans'
 alias dcl='docker compose logs -f --tail=300'
+alias ducks='du -cks * | sort -rn | head -20'
+
+alias gti='git'
 
 #
 # Pager
