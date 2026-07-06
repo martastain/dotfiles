@@ -1,0 +1,8 @@
+[mgr]
+ratio = [0, 3, 2]
+linemode = "size_and_mtime"
+
+[[open.prepend_rules]]
+url = "*/"
+use = []
+
