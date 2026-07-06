@@ -4,7 +4,7 @@ martastain's dotfiles
 Install base packages
 
 ```bash
-apt-get install -y git zsh build-essential stow jq tmux httpie curl ripgrep exa fuse
+apt-get install -y git zsh build-essential stow tmux httpie curl fuse
 ```
 
 Make zsh the default shell
