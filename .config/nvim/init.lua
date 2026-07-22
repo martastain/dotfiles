@@ -3,6 +3,8 @@ require "config.autocmds"
 require "config.lazy"
 require "config.keymaps"
 
+vim.opt.termguicolors = true
+
 vim.lsp.enable {
   "cssls",
   "eslint",
