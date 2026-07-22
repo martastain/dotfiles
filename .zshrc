@@ -163,7 +163,7 @@ alias gti='git'
 # Pager
 #
 
-export LESS=
+export LESS="-R"
 export GH_PAGER="less -FRX"
 
 #
