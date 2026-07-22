@@ -49,7 +49,21 @@ return {
     cmdline ={
       enabled = true,
       view = "cmdline"
-    }},
+    },
+      routes = {
+        {
+          filter = {
+            event = "lsp",
+            kind = "progress",
+            cond = function(msg)
+              local client = vim.tbl_get(msg, "opts", "progress", "client")
+              return client == "pyright"
+            end,
+          },
+          opts = { skip = true },
+        },
+      },
+    },
     dependencies = {
       "MunifTanjim/nui.nvim",
     },

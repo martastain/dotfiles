@@ -33,7 +33,7 @@ return {
       analysis = {
         autoSearchPaths = true,
         useLibraryCodeForTypes = true,
-        diagnosticMode = 'workspace',
+        diagnosticMode = 'openFilesOnly',
         typeCheckingMode = "basic",
       },
     },
