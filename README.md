@@ -1,20 +1,14 @@
 martastain's dotfiles
 =====================
 
-Install base packages
+Install base packages and make zsh the default shell
 
 ```bash
 apt-get install -y git zsh build-essential stow tmux httpie curl fuse
-```
-
-Make zsh the default shell
-
-```bash
 chsh -s /usr/bin/zsh
 ```
 
-Install starship prompt and mise
-
+Install and mise
 
 ```bash
 curl -sS https://starship.rs/install.sh | sh
@@ -28,7 +22,6 @@ rm ~/.zshrc
 git clone https://github.com/martastain/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 stow .
-chsh -s /usr/bin/zsh
 ```
 
 Now log out and log in again
@@ -38,15 +31,14 @@ Ensure mise is set up correctly
 ```bash
 mise trust
 mise install
+./install-tools.sh
 ```
-
 
 ### Tmux
 
 - `C-a` is the prefix key.
 - Navigation between panes is done with `C+PgUp` and `C+PgDown`.
 - New pane is created with `C+t`
-
 
 ### Git 
 
